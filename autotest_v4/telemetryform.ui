@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TelemetryForm</class>
+ <widget class="QWidget" name="TelemetryForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1060</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QDockWidget" name="dockWidget">
+     <property name="maximumSize">
+      <size>
+       <width>571</width>
+       <height>524287</height>
+      </size>
+     </property>
+     <widget class="QWidget" name="dockWidgetContents">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTreeWidget" name="treeWidgetTelemetry">
+         <property name="headerHidden">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QTabWidget" name="tabWidgetDisplay">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::ElideNone</enum>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <property name="tabBarAutoHide">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5"/>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Tab 2</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

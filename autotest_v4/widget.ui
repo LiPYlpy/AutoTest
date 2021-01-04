@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1253</width>
+    <height>681</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>一键测试</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab0">
+      <attribute name="title">
+       <string>数据中心 </string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab1">
+      <attribute name="title">
+       <string>遥测系统</string>
+      </attribute>
+      <widget class="QDockWidget" name="dockWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>361</width>
+         <height>561</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="dockWidgetContents">
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QTreeWidget" name="treeWidgetTelemetry">
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QTabWidget" name="tabWidgetDisplay">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>20</y>
+         <width>771</width>
+         <height>551</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="elideMode">
+        <enum>Qt::ElideNone</enum>
+       </property>
+       <property name="tabsClosable">
+        <bool>false</bool>
+       </property>
+       <property name="movable">
+        <bool>true</bool>
+       </property>
+       <property name="tabBarAutoHide">
+        <bool>false</bool>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Tab 1</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_5"/>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab2">
+      <attribute name="title">
+       <string>遥控系统 </string>
+      </attribute>
+      <widget class="QTabWidget" name="tabWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>30</y>
+         <width>371</width>
+         <height>451</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab20">
+        <attribute name="title">
+         <string>指令</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QWidget" name="widget" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>开关指令类型：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxSwitchType">
+              <property name="editable">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>分系统：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxSubSys"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_2" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QCheckBox" name="checkBoxSwitch">
+              <property name="text">
+               <string>开关指令加密</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxReturn">
+              <property name="text">
+               <string>返回小环比对</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_3" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnSearch">
+              <property name="text">
+               <string>搜索</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>341</width>
+              <height>187</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_4" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>发送方式：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxSendType"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnSend">
+              <property name="text">
+               <string>发送</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab21">
+        <attribute name="title">
+         <string>注数</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QWidget" name="widget_7" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>数据长度</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDataLength"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_6" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QCheckBox" name="checkBoxDisturb">
+              <property name="text">
+               <string>注入数据加扰</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxEncrypt">
+              <property name="text">
+               <string>注入数据加密</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>发送类型</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QRadioButton" name="radioButtonSetData">
+              <property name="text">
+               <string>注入数据</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButtonDIYData">
+              <property name="text">
+               <string>用户自定义数据</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="textEdit"/>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_5" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QPushButton" name="pushButtonSetData">
+              <property name="text">
+               <string>注入数据</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonDIYData">
+              <property name="text">
+               <string>发送自定义数据</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="widget_8" native="true">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>50</y>
+         <width>511</width>
+         <height>431</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>数据发送历史记录</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableView" name="tableView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="btnOrderSend">
+       <property name="geometry">
+        <rect>
+         <x>800</x>
+         <y>490</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>自动顺序发送</string>
+       </property>
+      </widget>
+      <widget class="QTextBrowser" name="textBrowser">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>500</y>
+         <width>711</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
