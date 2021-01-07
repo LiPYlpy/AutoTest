@@ -71,8 +71,3 @@ Thumbs.db
 *.dll
 *.exe
 
-/build-autotest-Desktop_Qt_5_9_9_MinGW_32bit-Debug
-/build-autotest-Desktop_Qt_5_9_9_MinGW_32bit-Release
-
-/build-dataparsing-Desktop_Qt_5_9_9_MinGW_32bit-Debug
-/build-dataparsing-Desktop_Qt_5_9_9_MinGW_32bit-Release
