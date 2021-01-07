@@ -1,13 +1,25 @@
 #include "telemetryform.h"
 #include "ui_telemetryform.h"
 #include <QTableWidget>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
+#include <QDebug>
+#include <QString>
 
+QMap<QString,QStringList> teleSysMap; //分系统对应的数据编号
+QMap<QString,QString> findNameMap;
+QStringList teleSysName;
 
 TelemetryForm::TelemetryForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TelemetryForm)
 {
     ui->setupUi(this);
+
+    QString fileName = "dataParse_v1.json";
+    OpenJsonFile(fileName);
 
     /*******************************************************************************************/
     /*******************************************************************************************/
@@ -142,7 +154,8 @@ TelemetryForm::TelemetryForm(QWidget *parent) :
     R26_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R26_tableForm,"R26 实时遥测8_综合电子系统");
     connect(this,&TelemetryForm::R26_Init,R26_tableForm,&TableForm::InitTable);
-    emit R26_Init(R26_Name(),R26_Num());
+//    emit R26_Init(R26_Name(),R26_Num());
+    emit R26_Init(GetNameFromMap("RCES"),teleSysMap.value("RCES"));
     connect(this,&TelemetryForm::R26_Display,R26_tableForm,&TableForm::UpdataUI);
 
     R27_tableForm = new TableForm(this);
@@ -235,43 +248,107 @@ TelemetryForm::~TelemetryForm()
     qDebug()<<"析构 TelemetryForm";
 }
 
-//显示遥测数据解析与检测的结构
-void TelemetryForm::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
+void TelemetryForm::OpenJsonFile(QString fileName)
 {
-    switch (sysName) {
-    case 1:
-        emit R19_Display(valueList.mid(0,55),hexList.mid(0,55),resultList.mid(0,55));   //R19表
-        emit R20_Display(valueList.mid(55,55),hexList.mid(55,55),resultList.mid(55,55));//R20表
-        emit R21_Display(valueList.mid(110,63),hexList.mid(110,63),resultList.mid(110,63));//R21表
-        emit R22_Display(valueList.mid(173,173),hexList.mid(173,173),resultList.mid(173,173));//R22表
-        emit R23_Display(valueList.mid(346,141),hexList.mid(346,141),resultList.mid(346,141));//R23表
-        emit R24_Display(valueList.mid(487,66),hexList.mid(487,66),resultList.mid(487,66));//R24表
-        emit R25_Display(valueList.mid(553,101),hexList.mid(553,101),resultList.mid(553,101));//R25表
-        emit R26_Display(valueList.mid(654,236),hexList.mid(654,236),resultList.mid(654,236));//R26表
-        emit R27_Display(valueList.mid(890,6),hexList.mid(890,6),resultList.mid(890,6));//R27表
-        break;
-    case 2:break;
-    case 3:break;
-    case 4:break;
-    case 5:break;
-    case 6:break;
-    case 7:break;
-    case 8:break;
-    case 9:break;
-    case 10:break;
-    case 11:break;
-    case 12:break;
-    case 13:break;
-    case 14:break;
-    case 15:break;
-    case 16:break;
-    case 17:break;
-    case 18:break;
-    default:break;
+    QString fileDir = "../"+fileName;
+    QFile file(fileDir);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString value = file.readAll();
+    file.close();
+
+    QJsonParseError parseJsonErr;
+    QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
+    if(!(parseJsonErr.error == QJsonParseError::NoError))
+    {
+        qDebug()<<tr("解析json文件错误！");
+        return;
     }
+    QJsonObject jsonObject = document.object();
+
+    QJsonValue configValueList = jsonObject.value(QStringLiteral("config"));
+
+    foreach(QString i, configValueList.toObject().keys()){
+        QJsonArray array = configValueList.toObject().value(i).toArray();
+        QStringList subSys;
+        for(int k = 0;k<array.size();k++)
+        {
+            subSys<<array.at(k).toString();
+        }
+        teleSysMap.insert(i,subSys);
+        teleSysName<<i;
+    }
+
+    if(jsonObject.contains(QStringLiteral("parse")))
+    {
+        QJsonValue arrayValue = jsonObject.value(QStringLiteral("parse"));
+        if(arrayValue.isArray())
+        {
+            QJsonArray parseArray = arrayValue.toArray();
+            for (int i = 0; i<parseArray.size(); i++ ) {
+                QJsonObject parseItem = parseArray.at(i).toObject();
+                QString dataName = parseItem.keys().at(0);
+                QJsonObject item = parseItem.begin()->toObject();
+                QString infoName = item.value(QStringLiteral("name")).toString();
+                findNameMap.insert(dataName,infoName);
+            }
+        }
+    }
+//    qDebug()<<teleSysMap;
+//    qDebug()<<findNameMap;
 }
 
+QStringList TelemetryForm::GetNameFromMap(QString sysName)
+{
+    QStringList nameList;
+    QStringList numList;
+    numList = teleSysMap.value(sysName);
+    for (int i = 0;i<numList.size(); i++ ) {
+        nameList<<findNameMap.value(numList.at(i));
+    }
+    return nameList;
+}
 
+void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList)
+{
+    QMap<QString,QStringList> displayMap = map2Display.value<QMap<QString,QStringList>>();
+
+}
+
+//显示遥测数据解析与检测的结构
+//void TelemetryForm::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
+//{
+//    switch (sysName) {
+//    case 1:
+//        emit R19_Display(valueList.mid(0,55),hexList.mid(0,55),resultList.mid(0,55));   //R19表
+//        emit R20_Display(valueList.mid(55,55),hexList.mid(55,55),resultList.mid(55,55));//R20表
+//        emit R21_Display(valueList.mid(110,63),hexList.mid(110,63),resultList.mid(110,63));//R21表
+//        emit R22_Display(valueList.mid(173,173),hexList.mid(173,173),resultList.mid(173,173));//R22表
+//        emit R23_Display(valueList.mid(346,141),hexList.mid(346,141),resultList.mid(346,141));//R23表
+//        emit R24_Display(valueList.mid(487,66),hexList.mid(487,66),resultList.mid(487,66));//R24表
+//        emit R25_Display(valueList.mid(553,101),hexList.mid(553,101),resultList.mid(553,101));//R25表
+//        emit R26_Display(valueList.mid(654,236),hexList.mid(654,236),resultList.mid(654,236));//R26表
+//        emit R27_Display(valueList.mid(890,6),hexList.mid(890,6),resultList.mid(890,6));//R27表
+//        break;
+//    case 2:break;
+//    case 3:break;
+//    case 4:break;
+//    case 5:break;
+//    case 6:break;
+//    case 7:break;
+//    case 8:break;
+//    case 9:break;
+//    case 10:break;
+//    case 11:break;
+//    case 12:break;
+//    case 13:break;
+//    case 14:break;
+//    case 15:break;
+//    case 16:break;
+//    case 17:break;
+//    case 18:break;
+//    default:break;
+//    }
+//}
 
 
 

@@ -62,8 +62,8 @@ void Widget::FromSerialForm(QString command, QStringList resultList)
     emit Send2RCForm(command,resultList);
 }
 
-void Widget::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
+void Widget::RecvExplainInfo(QVariant map2Display,QStringList resultList)
 {
-    emit SendExplainInfo(sysName, valueList, hexList, resultList);
+    emit SendExplainInfo(map2Display, resultList);
 }
 

@@ -128,34 +128,34 @@ DataController::~DataController()
 void DataController::SaveData(QByteArray byteArray)
 {
     controllMutex.lock();
-//    qDebug()<<"byteArray"<<byteArray.size();
-//    byteArray = byteArray.toHex();
+    qDebug()<<"byteArray"<<byteArray.size();
+    byteArray = byteArray.toHex();
 
-//    QString str;
-//    for (int i = 0; i<byteArray.length();) {
-//        str = byteArray.at(i);
-//        str.append(byteArray.at(i+1));
-//        i=i+2;
-//        queue[writePoint] = str.toInt(nullptr,16);  //用int存储
-//        writePoint = writePoint + 1;
+    QString str;
+    for (int i = 0; i<byteArray.length();) {
+        str = byteArray.at(i);
+        str.append(byteArray.at(i+1));
+        i=i+2;
+        queue[writePoint] = str.toInt(nullptr,16);  //用int存储
+        writePoint = (writePoint + 1)%(4095*11);
 
-//    }
+    }
 
 
     //将文本数据分割并清洗
-    QString str = QString(byteArray);
-    QStringList temp = str.split(" ");
-    for(int i = 0;i<temp.size();i++)
-    {
-        if(temp.at(i)=="")
-            continue;
-        if(temp.at(i)=="\r\n\r\n")
-            continue;
-        if(temp.at(i)=="\r\n")
-            continue;
-        queue[writePoint] = temp.at(i).toInt(nullptr,16);
-        writePoint = (writePoint + 1)%(4095*11); //记录写指针
-    }
+//    QString str = QString(byteArray);
+//    QStringList temp = str.split(" ");
+//    for(int i = 0;i<temp.size();i++)
+//    {
+//        if(temp.at(i)=="")
+//            continue;
+//        if(temp.at(i)=="\r\n\r\n")
+//            continue;
+//        if(temp.at(i)=="\r\n")
+//            continue;
+//        queue[writePoint] = temp.at(i).toInt(nullptr,16);
+//        writePoint = (writePoint + 1)%(4095*11); //记录写指针
+//    }
     controllMutex.unlock();
     //触发解帧函数
     emit FindHead();

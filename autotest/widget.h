@@ -25,7 +25,10 @@ public:
     void FromSerialForm(QString command, QStringList resultList);
 
     //tableWidget
-    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void RecvExplainInfo(QVariant map2Display,QStringList resultList);
+
 
 signals:
 
@@ -34,7 +37,10 @@ signals:
     void Send2RCForm(QString command, QStringList resultList);
 
     //tableWidget
-    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void SendExplainInfo(QVariant map2Display,QStringList resultList);
+
 
 
 private:

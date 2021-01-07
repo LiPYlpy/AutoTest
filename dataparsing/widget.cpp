@@ -46,7 +46,7 @@ Widget::~Widget()
 
 void Widget::createView()
 {
-    QFile file("C:/Users/LPY/Desktop/dataParse.json");
+    QFile file("../dataParse.json");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QString value = file.readAll();
     file.close();

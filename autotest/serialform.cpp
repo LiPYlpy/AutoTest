@@ -279,10 +279,17 @@ void SerialForm::DetectFailed(QString command)
 }
 
 //遥测数据解析\异常检测结果发送显示
-void SerialForm::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
+//void SerialForm::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
+//{
+//    emit SendExplainInfo(sysName, valueList, hexList, resultList);
+//}
+
+void SerialForm::RecvExplainInfo(QVariant map2Display,QStringList resultList)
 {
-    emit SendExplainInfo(sysName, valueList, hexList, resultList);
+    emit SendExplainInfo(map2Display, resultList);
 }
+
+
 
 //QByteArray转QString
 QString SerialForm::QByteArray2QString(QByteArray buffer)

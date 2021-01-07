@@ -1,0 +1,3915 @@
+{
+    "config": {
+        "RCES": [
+            "TM-RCES-01",
+            "TM-RCES-02",
+            "TM-RCES-03",
+            "TM-RCES-04",
+            "TM-RCES-05",
+            "TM-RCES-06",
+            "TM-RCES-07",
+            "TM-RCES-08",
+            "TM-RCES-09",
+            "TM-RCES-10",
+            "TM-RCES-11",
+            "TM-RCES-12",
+            "TM-RCES-13",
+            "TM-RCES-14",
+            "TM-RCES-15",
+            "TM-RCES-16",
+            "TM-RCES-17",
+            "TM-RCES-18",
+            "TM-RCES-19",
+            "TM-RCES-20",
+            "TM-RCES-21",
+            "TM-RCES-22",
+            "TM-RCES-23",
+            "TM-RCES-24",
+            "TM-RCES-25",
+            "TM-RCES-26",
+            "TM-RCES-27",
+            "TM-RCES-28",
+            "TM-RCES-29",
+            "TM-RCES-30",
+            "TM-RCES-31",
+            "TM-RCES-32",
+            "TM-RCES-33",
+            "TM-RCES-34",
+            "TM-RCES-35",
+            "TM-RCES-36",
+            "TM-RCES-37",
+            "TM-RCES-38",
+            "TM-RCES-39",
+            "TM-RCES-40",
+            "TM-RCES-41",
+            "TM-RCES-42",
+            "TM-RCES-43",
+            "TM-RCES-44",
+            "TM-RCES-45",
+            "TM-RCES-46",
+            "TM-RCES-47",
+            "TM-RCES-48",
+            "TM-RCES-49",
+            "TM-RCES-50",
+            "TM-RCES-51",
+            "TM-RCES-52",
+            "TM-RCES-53",
+            "TM-RCES-54",
+            "TM-RCES-55",
+            "TM-RCES-56",
+            "TM-RCES-57",
+            "TM-RCES-58",
+            "TM-RCES-59",
+            "TM-RCES-60",
+            "TM-RCES-61",
+            "TM-RCES-62",
+            "TM-RCES-63",
+            "TM-RCES-64",
+            "TM-RCES-65",
+            "TM-RCES-66",
+            "TM-RCES-67",
+            "TM-RCES-68",
+            "TM-RCES-69",
+            "TM-RCES-70",
+            "TM-RCES-71",
+            "TM-RCES-72",
+            "TM-RCES-73",
+            "TM-RCES-74",
+            "TM-RCES-75",
+            "TM-RCES-76",
+            "TM-RCES-77",
+            "TM-RCES-78",
+            "TM-RCES-79",
+            "TM-RCES-80",
+            "TM-RCES-81",
+            "TM-RCES-82",
+            "TM-RCES-83",
+            "TM-RCES-84",
+            "TM-RCES-85",
+            "TM-RCES-86",
+            "TM-RCES-87",
+            "TM-RCES-88",
+            "TM-RCES-89",
+            "TM-RCES-90",
+            "TM-RCES-93",
+            "TM-RCES-94",
+            "TM-RCES-95",
+            "TM-RCES-96",
+            "TM-RCES-97",
+            "TM-RCES-98",
+            "TM-RCES-99",
+            "TM-RCES-100",
+            "TM-RCES-101",
+            "TM-RCES-102",
+            "TM-RCES-103",
+            "TM-RCES-104",
+            "TM-RCES-105",
+            "TM-RCES-106",
+            "TM-RCES-107",
+            "TM-RCES-108",
+            "TM-RCES-109",
+            "TM-RCES-110",
+            "TM-RCES-111",
+            "TM-RCES-112",
+            "TM-RCES-113",
+            "TM-RCES-114",
+            "TM-RCES-115",
+            "TM-RCES-116",
+            "TM-RCES-117",
+            "TM-RCES-118",
+            "TM-RCES-119",
+            "TM-RCES-120",
+            "TM-RCES-121",
+            "TM-RCES-122",
+            "TM-RCES-123",
+            "TM-RCES-124",
+            "TM-RCES-125",
+            "TM-RCES-126",
+            "TM-RCES-127",
+            "TM-RCES-128",
+            "TM-RCES-129",
+            "TM-RCES-130",
+            "TM-RCES-131",
+            "TM-RCES-132",
+            "TM-RCES-133",
+            "TM-RCES-134",
+            "TM-RCES-135",
+            "TM-RCES-136",
+            "TM-RCES-137",
+            "TM-RCES-138",
+            "TM-RCES-139",
+            "TM-RCES-140",
+            "TM-RCES-141",
+            "TM-RCES-142",
+            "TM-RCES-143",
+            "TM-RCES-144",
+            "TM-RCES-145",
+            "TM-RCES-146",
+            "TM-RCES-147",
+            "TM-RCES-148",
+            "TM-RCES-149",
+            "TM-RCES-150",
+            "TM-RCES-151",
+            "TM-RCES-152",
+            "TM-RCES-153",
+            "TM-RCES-154",
+            "TM-RCES-155",
+            "TM-RCES-156",
+            "TM-RCES-157",
+            "TM-RCES-158",
+            "TM-RCES-159",
+            "TM-RCES-160",
+            "TM-RCES-161",
+            "TM-RCES-162",
+            "TM-RCES-163",
+            "TM-RCES-164",
+            "TM-RCES-165",
+            "TM-RCES-166",
+            "TM-RCES-167",
+            "TM-RCES-168",
+            "TM-RCES-169",
+            "TM-RCES-170",
+            "TM-RCES-171",
+            "TM-RCES-172",
+            "TM-RCES-173",
+            "TM-RCES-174",
+            "TM-RCES-175",
+            "TM-RCES-176",
+            "TM-RCES-177",
+            "TM-RCES-178",
+            "TM-RCES-179",
+            "TM-RCES-180",
+            "TM-RCES-181",
+            "TM-RCES-182",
+            "TM-RCES-183",
+            "TM-RCES-184",
+            "TM-RCES-185",
+            "TM-RCES-186",
+            "TM-RCES-187",
+            "TM-RCES-188",
+            "TM-RCES-189",
+            "TM-RCES-190",
+            "TM-RCES-191",
+            "TM-RCES-192",
+            "TM-RCES-193",
+            "TM-RCES-194",
+            "TM-RCES-195",
+            "TM-RCES-196",
+            "TM-RCES-197",
+            "TM-RCES-198",
+            "TM-RCES-199",
+            "TM-RCES-200",
+            "TM-RCES-201",
+            "TM-RCES-202",
+            "TM-RCES-203",
+            "TM-RCES-204",
+            "TM-RCES-205",
+            "TM-RCES-206",
+            "TM-RCES-207",
+            "TM-RCES-208",
+            "TM-RCES-209",
+            "TM-RCES-210",
+            "TM-RCES-211",
+            "TM-RCES-212",
+            "TM-RCES-213",
+            "TM-RCES-214",
+            "TM-RCES-215",
+            "TM-RCES-216",
+            "TM-RCES-217",
+            "TM-RCES-218",
+            "TM-RCES-219",
+            "TM-RCES-220",
+            "TM-RCES-221",
+            "TM-RCES-222",
+            "TM-RCES-223",
+            "TM-RCES-224",
+            "TM-RCES-225",
+            "TM-RCES-226",
+            "TM-RCES-227",
+            "TM-RCES-228",
+            "TM-RCES-229",
+            "TM-RCES-230",
+            "TM-RCES-231",
+            "TM-RCES-232",
+            "TM-RCES-233",
+            "TM-RCES-234",
+            "TM-RCES-235",
+            "TM-RCES-236",
+            "TM-RCES-237",
+            "TM-RCES-238"
+        ],
+        "RADCS": [
+            "TM11",
+            "TM12",
+            "TM13"
+        ]
+    },
+    "parse": [
+        {
+            "TM-RCES-01": {
+                "attribute": "4",
+                "name": "星上实时时间",
+                "location": [
+                    622,
+                    629,
+                    0,
+                    63
+                ]
+            }
+        },
+        {
+            "TM-RCES-02": {
+                "attribute": "3",
+                "name": "上电时间",
+                "location": [
+                    630,
+                    633,
+                    0,
+                    31
+                ]
+            }
+        },
+        {
+            "TM-RCES-03": {
+                "attribute": "3",
+                "name": "入轨点时间",
+                "location": [
+                    634,
+                    637,
+                    0,
+                    31
+                ]
+            }
+        },
+        {
+            "TM-RCES-04": {
+                "attribute": "0",
+                "name": "NandFlash数据擦除准禁标志",
+                "location": [
+                    638,
+                    638,
+                    7,
+                    7
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-05": {
+                "attribute": "0",
+                "name": "DSP1开关状态",
+                "location": [
+                    638,
+                    638,
+                    6,
+                    6
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-06": {
+                "attribute": "0",
+                "name": "DSP2开关状态",
+                "location": [
+                    638,
+                    638,
+                    5,
+                    5
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-07": {
+                "attribute": "0",
+                "name": "DSP3开关状态",
+                "location": [
+                    638,
+                    638,
+                    4,
+                    4
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-08": {
+                "attribute": "0",
+                "name": "GPS1开关状态",
+                "location": [
+                    638,
+                    638,
+                    3,
+                    3
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-09": {
+                "attribute": "0",
+                "name": "GPS2开关状态",
+                "location": [
+                    638,
+                    638,
+                    2,
+                    2
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-10": {
+                "attribute": "0",
+                "name": "GPS3开关状态",
+                "location": [
+                    638,
+                    638,
+                    1,
+                    1
+                ],
+                "flag": {
+                    "0": "关",
+                    "1": "开"
+                }
+            }
+        },
+        {
+            "TM-RCES-11": {
+                "attribute": "0",
+                "name": "在轨更新准禁标志",
+                "location": [
+                    638,
+                    638,
+                    0,
+                    0
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-12": {
+                "attribute": "0",
+                "name": "姿控系统自主控制准禁标志",
+                "location": [
+                    639,
+                    640,
+                    15,
+                    15
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-13": {
+                "attribute": "0",
+                "name": "综合电子系统自主控制电源准禁标志",
+                "location": [
+                    639,
+                    640,
+                    14,
+                    14
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-14": {
+                "attribute": "0",
+                "name": "当前整星工作模式",
+                "location": [
+                    639,
+                    640,
+                    12,
+                    13
+                ],
+                "flag": {
+                    "00": "安全模式",
+                    "01": "正常模式"
+                }
+            }
+        },
+        {
+            "TM-RCES-15": {
+                "attribute": "0",
+                "name": "载荷软件运行准禁标志",
+                "location": [
+                    639,
+                    640,
+                    11,
+                    11
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-16": {
+                "attribute": "0",
+                "name": "DSP加载程序选择",
+                "location": [
+                    639,
+                    640,
+                    10,
+                    10
+                ],
+                "flag": {
+                    "0": "原始程序",
+                    "1": "在轨更新程序"
+                }
+            }
+        },
+        {
+            "TM-RCES-17": {
+                "attribute": "0",
+                "name": "指令执行单元内看门狗准禁",
+                "location": [
+                    639,
+                    640,
+                    9,
+                    9
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-18": {
+                "attribute": "0",
+                "name": "指令执行单元自主切换DSP准禁",
+                "location": [
+                    639,
+                    640,
+                    8,
+                    8
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-19": {
+                "attribute": "0",
+                "name": "综合电子系统程控测距载荷准禁标志",
+                "location": [
+                    639,
+                    640,
+                    7,
+                    7
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-20": {
+                "attribute": "0",
+                "name": "自主管理GPS3的准禁",
+                "location": [
+                    639,
+                    640,
+                    6,
+                    6
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-21": {
+                "attribute": "0",
+                "name": "自主管理GPS4的准禁",
+                "location": [
+                    639,
+                    640,
+                    5,
+                    5
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-22": {
+                "attribute": "0",
+                "name": "自主试验区判断的准禁",
+                "location": [
+                    639,
+                    640,
+                    4,
+                    4
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-23": {
+                "attribute": "0",
+                "name": "Eeprom0故障标志",
+                "location": [
+                    639,
+                    640,
+                    3,
+                    3
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-24": {
+                "attribute": "0",
+                "name": "Eeprom1故障标志",
+                "location": [
+                    639,
+                    640,
+                    2,
+                    2
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-25": {
+                "attribute": "0",
+                "name": "Eeprom2故障标志",
+                "location": [
+                    639,
+                    640,
+                    1,
+                    1
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-26": {
+                "attribute": "0",
+                "name": "Eeprom3故障标志",
+                "location": [
+                    639,
+                    640,
+                    0,
+                    0
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-27": {
+                "attribute": "0",
+                "name": "遥控指令进入低功耗模式的准禁标志",
+                "location": [
+                    641,
+                    641,
+                    7,
+                    7
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-28": {
+                "attribute": "0",
+                "name": "电压比较器退出低功耗模式的准禁",
+                "location": [
+                    641,
+                    641,
+                    6,
+                    6
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-29": {
+                "attribute": "0",
+                "name": "姿控软件运行准禁标志",
+                "location": [
+                    641,
+                    641,
+                    5,
+                    5
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-30": {
+                "attribute": "0",
+                "name": "轨控软件运行准禁标志",
+                "location": [
+                    641,
+                    641,
+                    4,
+                    4
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-31": {
+                "attribute": "0",
+                "name": "星间测距软件运行准禁标志",
+                "location": [
+                    641,
+                    641,
+                    3,
+                    3
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-32": {
+                "attribute": "0",
+                "name": "RTOD软件自主运行准禁标志",
+                "location": [
+                    641,
+                    641,
+                    2,
+                    2
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-33": {
+                "attribute": "0",
+                "name": "综合电子系统自主管理接收机准禁标志",
+                "location": [
+                    641,
+                    641,
+                    1,
+                    1
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-34": {
+                "attribute": "0",
+                "name": "GPS校时功能准禁标志",
+                "location": [
+                    641,
+                    641,
+                    0,
+                    0
+                ],
+                "flag": {
+                    "0": "禁止",
+                    "1": "允许"
+                }
+            }
+        },
+        {
+            "TM-RCES-35": {
+                "attribute": "0",
+                "name": "DSP1健康状态",
+                "location": [
+                    642,
+                    642,
+                    7,
+                    7
+                ],
+                "flag": {
+                    "0": "异常",
+                    "1": "正常"
+                }
+            }
+        },
+        {
+            "TM-RCES-36": {
+                "attribute": "0",
+                "name": "DSP2健康状态",
+                "location": [
+                    642,
+                    642,
+                    6,
+                    6
+                ],
+                "flag": {
+                    "0": "异常",
+                    "1": "正常"
+                }
+            }
+        },
+        {
+            "TM-RCES-37": {
+                "attribute": "0",
+                "name": "DSP3健康状态",
+                "location": [
+                    642,
+                    642,
+                    5,
+                    5
+                ],
+                "flag": {
+                    "0": "异常",
+                    "1": "正常"
+                }
+            }
+        },
+        {
+            "TM-RCES-38": {
+                "attribute": "3",
+                "name": "预留",
+                "location": [
+                    642,
+                    642,
+                    4,
+                    4
+                ]
+            }
+        },
+        {
+            "TM-RCES-39": {
+                "attribute": "3",
+                "name": "预留",
+                "location": [
+                    642,
+                    642,
+                    3,
+                    3
+                ]
+            }
+        },
+        {
+            "TM-RCES-40": {
+                "attribute": "0",
+                "name": "在轨更新注入数据完成状态",
+                "location": [
+                    642,
+                    642,
+                    2,
+                    2
+                ],
+                "flag": {
+                    "0": "未完成",
+                    "1": "完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-41": {
+                "attribute": "0",
+                "name": "在轨更新操作选择",
+                "location": [
+                    642,
+                    642,
+                    0,
+                    1
+                ],
+                "flag": {
+                    "00": "无操作",
+                    "01": "更新",
+                    "10": "回滚"
+                }
+            }
+        },
+        {
+            "TM-RCES-42": {
+                "attribute": "3",
+                "name": "当前工作模式标识",
+                "location": [
+                    643,
+                    643,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-43": {
+                "attribute": "1",
+                "name": "单粒子翻转bit数",
+                "location": [
+                    644,
+                    644,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-44": {
+                "attribute": "3",
+                "name": "间接指令回传",
+                "location": [
+                    645,
+                    646,
+                    0,
+                    15
+                ]
+            }
+        },
+        {
+            "TM-RCES-45": {
+                "attribute": "3",
+                "name": "直接指令回传",
+                "location": [
+                    647,
+                    648,
+                    0,
+                    15
+                ]
+            }
+        },
+        {
+            "TM-RCES-46": {
+                "attribute": "1",
+                "name": "间接指令执行计数",
+                "location": [
+                    649,
+                    650,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-47": {
+                "attribute": "1",
+                "name": "间接指令接收计数",
+                "location": [
+                    651,
+                    652,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-48": {
+                "attribute": "1",
+                "name": "注入数据执行计数",
+                "location": [
+                    653,
+                    653,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-49": {
+                "attribute": "1",
+                "name": "注入数据接收计数",
+                "location": [
+                    654,
+                    654,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-50": {
+                "attribute": "1",
+                "name": "直接指令接收计数",
+                "location": [
+                    655,
+                    656,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-51": {
+                "attribute": "1",
+                "name": "指令识别正确计数",
+                "location": [
+                    657,
+                    658,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-52": {
+                "attribute": "1",
+                "name": "整星软件复位计数",
+                "location": [
+                    659,
+                    659,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-53": {
+                "attribute": "1",
+                "name": "下次低功耗时长",
+                "location": [
+                    660,
+                    661,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "10",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-54": {
+                "attribute": "1",
+                "name": "延时指令缓存数量",
+                "location": [
+                    662,
+                    662,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-55": {
+                "attribute": "3",
+                "name": "下条延时指令编码",
+                "location": [
+                    663,
+                    664,
+                    0,
+                    16
+                ]
+            }
+        },
+        {
+            "TM-RCES-56": {
+                "attribute": "1",
+                "name": "nandFlash坏块计数",
+                "location": [
+                    665,
+                    665,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-57": {
+                "attribute": "1",
+                "name": "当前运行软件版本号",
+                "location": [
+                    666,
+                    666,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-58": {
+                "attribute": "1",
+                "name": "星上已存最旧软件版本号",
+                "location": [
+                    667,
+                    667,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-59": {
+                "attribute": "1",
+                "name": "星上已存最新软件版本号",
+                "location": [
+                    668,
+                    668,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-60": {
+                "attribute": "1",
+                "name": "在轨更新剩余注数条数",
+                "location": [
+                    669,
+                    670,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-61": {
+                "attribute": "3",
+                "name": "在轨更新所缺注数编号",
+                "location": [
+                    671,
+                    690,
+                    0,
+                    159
+                ]
+            }
+        },
+        {
+            "TM-RCES-62": {
+                "attribute": "1",
+                "name": "第一级中断触发计数",
+                "location": [
+                    691,
+                    691,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-63": {
+                "attribute": "1",
+                "name": "第二级中断触发计数",
+                "location": [
+                    692,
+                    692,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-64": {
+                "attribute": "1",
+                "name": "第三级中断触发计数",
+                "location": [
+                    693,
+                    693,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-65": {
+                "attribute": "1",
+                "name": "第四级中断触发计数",
+                "location": [
+                    694,
+                    694,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-66": {
+                "attribute": "1",
+                "name": "GNSS3延时遥测当前存储地址",
+                "location": [
+                    695,
+                    696,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-67": {
+                "attribute": "1",
+                "name": "GNSS4延时遥测当前存储地址",
+                "location": [
+                    697,
+                    698,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-68": {
+                "attribute": "1",
+                "name": "RTOD延时遥测当前存储地址",
+                "location": [
+                    699,
+                    700,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-69": {
+                "attribute": "3",
+                "name": "延时注数缓存数量、下条延时注数编号",
+                "location": [
+                    701,
+                    702,
+                    0,
+                    15
+                ]
+            }
+        },
+        {
+            "TM-RCES-70": {
+                "attribute": "3",
+                "name": "载荷注数存储错误、载荷注数读取错误",
+                "location": [
+                    703,
+                    704,
+                    0,
+                    15
+                ]
+            }
+        },
+        {
+            "TM-RCES-71": {
+                "attribute": "1",
+                "name": "S载荷A机已存频点数",
+                "location": [
+                    705,
+                    706,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-72": {
+                "attribute": "1",
+                "name": "S载荷A机已存码组数",
+                "location": [
+                    707,
+                    708,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-73": {
+                "attribute": "1",
+                "name": "S载荷B机已存频点数",
+                "location": [
+                    709,
+                    710,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-74": {
+                "attribute": "1",
+                "name": "S载荷B机已存码组数",
+                "location": [
+                    711,
+                    712,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-75": {
+                "attribute": "1",
+                "name": "C载荷已存频点数",
+                "location": [
+                    713,
+                    714,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-76": {
+                "attribute": "1",
+                "name": "C载荷已存码组数",
+                "location": [
+                    715,
+                    716,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-77": {
+                "attribute": "1",
+                "name": "X载荷已存频点数",
+                "location": [
+                    717,
+                    718,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-78": {
+                "attribute": "1",
+                "name": "X载荷已存码组数",
+                "location": [
+                    719,
+                    720,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-79": {
+                "attribute": "1",
+                "name": "Ka载荷已存频点数",
+                "location": [
+                    721,
+                    722,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-80": {
+                "attribute": "1",
+                "name": "Ka载荷已存码组数",
+                "location": [
+                    723,
+                    724,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-81": {
+                "attribute": "1",
+                "name": "姿控软件运行用时",
+                "location": [
+                    725,
+                    726,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-82": {
+                "attribute": "0",
+                "name": "姿控软件执行情况",
+                "location": [
+                    725,
+                    726,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-83": {
+                "attribute": "1",
+                "name": "电源软件运行用时",
+                "location": [
+                    727,
+                    728,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-84": {
+                "attribute": "0",
+                "name": "电源软件执行情况",
+                "location": [
+                    727,
+                    728,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-85": {
+                "attribute": "1",
+                "name": "综合电子软件运行用时",
+                "location": [
+                    729,
+                    730,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-86": {
+                "attribute": "0",
+                "name": "综合电子软件执行情况",
+                "location": [
+                    729,
+                    730,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-87": {
+                "attribute": "1",
+                "name": "GPS软件运行用时",
+                "location": [
+                    731,
+                    732,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-88": {
+                "attribute": "0",
+                "name": "GPS软件执行情况",
+                "location": [
+                    731,
+                    732,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-89": {
+                "attribute": "1",
+                "name": "星间测距软件运行用时",
+                "location": [
+                    733,
+                    734,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-90": {
+                "attribute": "0",
+                "name": "星间测距软件执行情况",
+                "location": [
+                    733,
+                    734,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-93": {
+                "attribute": "1",
+                "name": "RTOD软件运行用时",
+                "location": [
+                    735,
+                    736,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-94": {
+                "attribute": "0",
+                "name": "RTOD软件执行情况",
+                "location": [
+                    735,
+                    736,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-95": {
+                "attribute": "1",
+                "name": "轨控软件运行用时",
+                "location": [
+                    737,
+                    738,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-96": {
+                "attribute": "0",
+                "name": "轨控软件执行情况",
+                "location": [
+                    737,
+                    738,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-97": {
+                "attribute": "1",
+                "name": "载荷软件运行用时",
+                "location": [
+                    739,
+                    740,
+                    8,
+                    15
+                ],
+                "trans": [
+                    "uint16",
+                    "20",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-98": {
+                "attribute": "0",
+                "name": "载荷软件执行情况",
+                "location": [
+                    739,
+                    740,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "未执行状态",
+                    "10101010": "执行完成"
+                }
+            }
+        },
+        {
+            "TM-RCES-99": {
+                "attribute": "1",
+                "name": "DSP1_3V3电压",
+                "location": [
+                    741,
+                    741,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-100": {
+                "attribute": "1",
+                "name": "DSP1_1V8电压",
+                "location": [
+                    742,
+                    742,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-101": {
+                "attribute": "1",
+                "name": "DSP1_1V2电压",
+                "location": [
+                    743,
+                    743,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-102": {
+                "attribute": "1",
+                "name": "DSP1_3V3电流",
+                "location": [
+                    744,
+                    744,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-103": {
+                "attribute": "1",
+                "name": "DSP1_1V8电流",
+                "location": [
+                    745,
+                    745,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-104": {
+                "attribute": "1",
+                "name": "DSP1_1V2电流",
+                "location": [
+                    746,
+                    746,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-105": {
+                "attribute": "1",
+                "name": "DSP2_3V3电压",
+                "location": [
+                    747,
+                    747,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-106": {
+                "attribute": "1",
+                "name": "DSP2_1V8电压",
+                "location": [
+                    748,
+                    748,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-107": {
+                "attribute": "1",
+                "name": "DSP2_1V2电压",
+                "location": [
+                    749,
+                    749,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-108": {
+                "attribute": "1",
+                "name": "DSP2_3V3电流",
+                "location": [
+                    750,
+                    750,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-109": {
+                "attribute": "1",
+                "name": "DSP2_1V8电流",
+                "location": [
+                    751,
+                    751,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-110": {
+                "attribute": "1",
+                "name": "DSP2_1V2电流",
+                "location": [
+                    752,
+                    752,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-111": {
+                "attribute": "1",
+                "name": "DSP3_3V3电压",
+                "location": [
+                    753,
+                    753,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-112": {
+                "attribute": "1",
+                "name": "DSP3_1V8电压",
+                "location": [
+                    754,
+                    754,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-113": {
+                "attribute": "1",
+                "name": "DSP3_1V2电压",
+                "location": [
+                    755,
+                    755,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-114": {
+                "attribute": "1",
+                "name": "DSP3_3V3电流",
+                "location": [
+                    756,
+                    756,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-115": {
+                "attribute": "1",
+                "name": "DSP3_1V8电流",
+                "location": [
+                    757,
+                    757,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-116": {
+                "attribute": "1",
+                "name": "DSP3_1V2电流",
+                "location": [
+                    758,
+                    758,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-117": {
+                "attribute": "1",
+                "name": "FPGA_3V3电压",
+                "location": [
+                    759,
+                    759,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-118": {
+                "attribute": "1",
+                "name": "FPGA_1V8电压",
+                "location": [
+                    760,
+                    760,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-119": {
+                "attribute": "1",
+                "name": "FPGA_1V2电压",
+                "location": [
+                    761,
+                    761,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-120": {
+                "attribute": "1",
+                "name": "FPGA_3V3电流",
+                "location": [
+                    762,
+                    762,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-121": {
+                "attribute": "1",
+                "name": "FPGA_1V8电流",
+                "location": [
+                    763,
+                    763,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-122": {
+                "attribute": "1",
+                "name": "FPGA_1V2电流",
+                "location": [
+                    764,
+                    764,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "0.0019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-123": {
+                "attribute": "1",
+                "name": "DSP1看门狗复位计数",
+                "location": [
+                    765,
+                    765,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-124": {
+                "attribute": "1",
+                "name": "DSP2看门狗复位计数",
+                "location": [
+                    766,
+                    766,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-125": {
+                "attribute": "1",
+                "name": "DSP3看门狗复位计数",
+                "location": [
+                    767,
+                    767,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-126": {
+                "attribute": "1",
+                "name": "综合板DSP加载完成的次数",
+                "location": [
+                    768,
+                    768,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-127": {
+                "attribute": "1",
+                "name": "姿控执行错误计数",
+                "location": [
+                    769,
+                    769,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-128": {
+                "attribute": "1",
+                "name": "轨控执行错误计数",
+                "location": [
+                    770,
+                    770,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-129": {
+                "attribute": "1",
+                "name": "电源执行错误计数",
+                "location": [
+                    771,
+                    771,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-130": {
+                "attribute": "1",
+                "name": "GPS执行错误计数",
+                "location": [
+                    772,
+                    772,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-131": {
+                "attribute": "1",
+                "name": "GNSS实时定轨错误计数",
+                "location": [
+                    773,
+                    773,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-132": {
+                "attribute": "1",
+                "name": "星务执行错误计数",
+                "location": [
+                    774,
+                    774,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-133": {
+                "attribute": "1",
+                "name": "载荷执行错误计数",
+                "location": [
+                    775,
+                    775,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-134": {
+                "attribute": "1",
+                "name": "星间测距执行错误计数",
+                "location": [
+                    776,
+                    776,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-135": {
+                "attribute": "1",
+                "name": "在轨更新执行错误计数",
+                "location": [
+                    777,
+                    777,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-136": {
+                "attribute": "0",
+                "name": "在轨更新执行错误类型",
+                "location": [
+                    778,
+                    778,
+                    0,
+                    7
+                ],
+                "flag": {
+                    "00000000": "正常",
+                    "01010101": " bill文件格式出错",
+                    "01100110": "bill文件写NandFlash出错",
+                    "01110111": "部分更新参考软件版本出错",
+                    "10001000": "获取跟新参考软件出错"
+                }
+            }
+        },
+        {
+            "TM-RCES-137": {
+                "attribute": "1",
+                "name": "SPI_A1通信上下行错误计数(应答机A程控)",
+                "location": [
+                    779,
+                    779,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-138": {
+                "attribute": "1",
+                "name": "SPI_A2通信上下行错误计数(应答机B程控)",
+                "location": [
+                    780,
+                    780,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-139": {
+                "attribute": "1",
+                "name": "SPI_B1通信上下行错误计数(磁力矩器DA)",
+                "location": [
+                    781,
+                    781,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-140": {
+                "attribute": "1",
+                "name": "SPI_B2通信上下行错误计数(主陀螺)",
+                "location": [
+                    782,
+                    782,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-141": {
+                "attribute": "1",
+                "name": "SPI_B3通信上下行错误计数(备份陀螺1)",
+                "location": [
+                    783,
+                    783,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-142": {
+                "attribute": "1",
+                "name": "SPI_B4通信上下行错误计数(备份陀螺2)",
+                "location": [
+                    784,
+                    784,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-143": {
+                "attribute": "1",
+                "name": "SPI_B5通信上下行错误计数(数字太敏)",
+                "location": [
+                    785,
+                    785,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-144": {
+                "attribute": "1",
+                "name": "SPI_B6通信上下行错误计数(模拟太敏1)",
+                "location": [
+                    786,
+                    786,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-145": {
+                "attribute": "1",
+                "name": "SPI_B7通信上下行错误计数(模拟太敏2)",
+                "location": [
+                    787,
+                    787,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-146": {
+                "attribute": "1",
+                "name": "SPI_B8通信上下行错误计数(模拟太敏3)",
+                "location": [
+                    788,
+                    788,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-147": {
+                "attribute": "1",
+                "name": "SPI_B9通信上下行错误计数(模拟太敏4)",
+                "location": [
+                    789,
+                    789,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-148": {
+                "attribute": "1",
+                "name": "SPI_B10通信上下行错误计数(模拟太敏5)",
+                "location": [
+                    790,
+                    790,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-149": {
+                "attribute": "1",
+                "name": "SPI_B11通信上下行错误计数(模拟太敏6)",
+                "location": [
+                    791,
+                    791,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-150": {
+                "attribute": "1",
+                "name": "SPI_C1通信上下行错误计数(电源EPS通信)",
+                "location": [
+                    792,
+                    792,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-151": {
+                "attribute": "1",
+                "name": "SPI_C2通信上下行错误计数(轨控OCS)",
+                "location": [
+                    793,
+                    793,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-152": {
+                "attribute": "1",
+                "name": "SPI_C3通信上下行错误计数(飞轮23反作用轮)",
+                "location": [
+                    794,
+                    794,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-153": {
+                "attribute": "1",
+                "name": "SPI_D0通信上下行错误计数(EEPROM1)",
+                "location": [
+                    795,
+                    795,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-154": {
+                "attribute": "1",
+                "name": "SPI_D1通信上下行错误计数(EEPROM2)",
+                "location": [
+                    796,
+                    796,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-155": {
+                "attribute": "1",
+                "name": "SPI_D2通信上下行错误计数(EEPROM3)",
+                "location": [
+                    797,
+                    797,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-156": {
+                "attribute": "1",
+                "name": "SPI_D3通信上下行错误计数(EEPROM4)",
+                "location": [
+                    798,
+                    798,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-157": {
+                "attribute": "1",
+                "name": "I2C1通信上下行错误计数(电源分系统AD第1路)",
+                "location": [
+                    799,
+                    799,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-158": {
+                "attribute": "1",
+                "name": "I2C2通信上下行错误计数(电源分系统AD第2路)",
+                "location": [
+                    800,
+                    800,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-159": {
+                "attribute": "1",
+                "name": "I2C3通信上下行错误计数(电源分系统AD第3路)",
+                "location": [
+                    801,
+                    801,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-160": {
+                "attribute": "1",
+                "name": "I2C4通信上下行错误计数(电源分系统AD第4路)",
+                "location": [
+                    802,
+                    802,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-161": {
+                "attribute": "1",
+                "name": "I2C5通信上下行错误计数(电源分系统AD第5路)",
+                "location": [
+                    803,
+                    803,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-162": {
+                "attribute": "1",
+                "name": "I2C6通信上下行错误计数(电源分系统AD第6路)",
+                "location": [
+                    804,
+                    804,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-163": {
+                "attribute": "1",
+                "name": "I2C7通信上下行错误计数(TEMP1)",
+                "location": [
+                    805,
+                    805,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-164": {
+                "attribute": "1",
+                "name": "I2C8通信上下行错误计数(TEMP2)",
+                "location": [
+                    806,
+                    806,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-165": {
+                "attribute": "1",
+                "name": "I2C9通信上下行错误计数(TEMP3)",
+                "location": [
+                    807,
+                    807,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-166": {
+                "attribute": "1",
+                "name": "I2C10通信上下行错误计数(TEMP4)",
+                "location": [
+                    808,
+                    808,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-167": {
+                "attribute": "1",
+                "name": "I2C11通信上下行错误计数(TEMP5)",
+                "location": [
+                    809,
+                    809,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-168": {
+                "attribute": "1",
+                "name": "I2C12通信上下行错误计数(RTC)",
+                "location": [
+                    810,
+                    810,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-169": {
+                "attribute": "1",
+                "name": "UART1通信上下错误计数(主磁强计)",
+                "location": [
+                    811,
+                    811,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-170": {
+                "attribute": "1",
+                "name": "UART2通信上下错误计数(备磁强计)",
+                "location": [
+                    812,
+                    812,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-171": {
+                "attribute": "1",
+                "name": "UART4通信上下错误计数(单频GPS)",
+                "location": [
+                    813,
+                    813,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-172": {
+                "attribute": "1",
+                "name": "UART5通信上下错误计数(双频GPS3)",
+                "location": [
+                    814,
+                    814,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-173": {
+                "attribute": "1",
+                "name": "UART6通信上下错误计数(双频GPS4)",
+                "location": [
+                    815,
+                    815,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-174": {
+                "attribute": "1",
+                "name": "SPISLAVE1通信上下错误计数(数字遥控)",
+                "location": [
+                    816,
+                    816,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-175": {
+                "attribute": "1",
+                "name": "SPISLAVE2通信上下错误计数(模拟遥控)",
+                "location": [
+                    817,
+                    817,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-176": {
+                "attribute": "1",
+                "name": "SPISLAVE3通信上下错误计数(数字工程遥控)",
+                "location": [
+                    818,
+                    818,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-177": {
+                "attribute": "1",
+                "name": "SPISLAVE4通信上下错误计数(模拟工程遥控)",
+                "location": [
+                    819,
+                    819,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-178": {
+                "attribute": "1",
+                "name": "载荷板通信错误计数(自定义通信协议)",
+                "location": [
+                    820,
+                    820,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-179": {
+                "attribute": "1",
+                "name": "FIFO1数据错误计数(遥测与数传)",
+                "location": [
+                    821,
+                    821,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-180": {
+                "attribute": "1",
+                "name": "FIFO2数据错误计数(遥测与数传)",
+                "location": [
+                    822,
+                    822,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-181": {
+                "attribute": "3",
+                "name": "综合电子系统板温传1数据",
+                "location": [
+                    823,
+                    823,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-182": {
+                "attribute": "3",
+                "name": "综合电子系统板温传2数据",
+                "location": [
+                    824,
+                    824,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-183": {
+                "attribute": "3",
+                "name": "GPS1温传数据",
+                "location": [
+                    825,
+                    825,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-184": {
+                "attribute": "3",
+                "name": "综合电子系统板温传3数据",
+                "location": [
+                    826,
+                    826,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-185": {
+                "attribute": "3",
+                "name": "测控温传1数据",
+                "location": [
+                    827,
+                    827,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-186": {
+                "attribute": "3",
+                "name": "测控温传2数据",
+                "location": [
+                    828,
+                    828,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-187": {
+                "attribute": "3",
+                "name": "电源温传数据",
+                "location": [
+                    829,
+                    829,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-188": {
+                "attribute": "3",
+                "name": "锂电池1温传数据",
+                "location": [
+                    830,
+                    830,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-189": {
+                "attribute": "3",
+                "name": "飞轮1温传数据",
+                "location": [
+                    831,
+                    831,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-190": {
+                "attribute": "3",
+                "name": "飞轮2温传数据",
+                "location": [
+                    832,
+                    832,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-191": {
+                "attribute": "3",
+                "name": "锂电池2温传数据",
+                "location": [
+                    833,
+                    833,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-192": {
+                "attribute": "3",
+                "name": "GPS4温传数据",
+                "location": [
+                    834,
+                    834,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-193": {
+                "attribute": "3",
+                "name": "GPS3温传数据",
+                "location": [
+                    835,
+                    835,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-194": {
+                "attribute": "3",
+                "name": "星间测距温传数据",
+                "location": [
+                    836,
+                    836,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-195": {
+                "attribute": "3",
+                "name": "飞轮3温传数据",
+                "location": [
+                    837,
+                    837,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-196": {
+                "attribute": "3",
+                "name": "飞轮4温传数据",
+                "location": [
+                    838,
+                    838,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-197": {
+                "attribute": "3",
+                "name": "卫星+X面温传数据",
+                "location": [
+                    839,
+                    839,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-198": {
+                "attribute": "3",
+                "name": "卫星-X面温传数据",
+                "location": [
+                    840,
+                    840,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-199": {
+                "attribute": "3",
+                "name": "卫星+Y面温传数据",
+                "location": [
+                    841,
+                    841,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-200": {
+                "attribute": "3",
+                "name": "卫星-Y面温传数据",
+                "location": [
+                    842,
+                    842,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-201": {
+                "attribute": "3",
+                "name": "卫星+Z面温传数据",
+                "location": [
+                    843,
+                    843,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-202": {
+                "attribute": "3",
+                "name": "卫星-Z面温传数据",
+                "location": [
+                    844,
+                    844,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-203": {
+                "attribute": "3",
+                "name": "轨控温传数据0",
+                "location": [
+                    845,
+                    845,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-204": {
+                "attribute": "3",
+                "name": "轨控温传数据1",
+                "location": [
+                    846,
+                    846,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-205": {
+                "attribute": "3",
+                "name": "轨控温传数据2",
+                "location": [
+                    847,
+                    847,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-206": {
+                "attribute": "3",
+                "name": "轨控温传数据3",
+                "location": [
+                    848,
+                    848,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-207": {
+                "attribute": "3",
+                "name": "轨控温传数据4",
+                "location": [
+                    849,
+                    849,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-208": {
+                "attribute": "3",
+                "name": "轨控温传数据5",
+                "location": [
+                    850,
+                    850,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-209": {
+                "attribute": "3",
+                "name": "轨控温传数据6",
+                "location": [
+                    851,
+                    851,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-210": {
+                "attribute": "3",
+                "name": "轨控温传数据7",
+                "location": [
+                    852,
+                    852,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-211": {
+                "attribute": "3",
+                "name": "网络盒1温传数据",
+                "location": [
+                    853,
+                    853,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-212": {
+                "attribute": "3",
+                "name": "网络盒2温传数据",
+                "location": [
+                    854,
+                    854,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-213": {
+                "attribute": "3",
+                "name": "网络盒3温传数据",
+                "location": [
+                    855,
+                    855,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-214": {
+                "attribute": "3",
+                "name": "网络盒4温传数据",
+                "location": [
+                    856,
+                    856,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-215": {
+                "attribute": "3",
+                "name": "网络盒5温传数据",
+                "location": [
+                    857,
+                    857,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-216": {
+                "attribute": "3",
+                "name": "网络盒6温传数据",
+                "location": [
+                    858,
+                    858,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-217": {
+                "attribute": "3",
+                "name": "龙泊球温传数据1",
+                "location": [
+                    859,
+                    859,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-218": {
+                "attribute": "3",
+                "name": "龙泊球温传数据2",
+                "location": [
+                    860,
+                    860,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-219": {
+                "attribute": "3",
+                "name": "转接板温传数据",
+                "location": [
+                    861,
+                    861,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-220": {
+                "attribute": "3",
+                "name": "C多模式温传",
+                "location": [
+                    862,
+                    862,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-221": {
+                "attribute": "3",
+                "name": "X温传",
+                "location": [
+                    863,
+                    863,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-222": {
+                "attribute": "3",
+                "name": "C连续波C板温传",
+                "location": [
+                    864,
+                    864,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-223": {
+                "attribute": "3",
+                "name": "C连续波S板温传",
+                "location": [
+                    865,
+                    865,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-224": {
+                "attribute": "3",
+                "name": "Ka温传",
+                "location": [
+                    866,
+                    866,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-225": {
+                "attribute": "0",
+                "name": "NandFlash0故障标志",
+                "location": [
+                    867,
+                    867,
+                    7,
+                    7
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-226": {
+                "attribute": "0",
+                "name": "NandFlash1故障标志",
+                "location": [
+                    867,
+                    867,
+                    6,
+                    6
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-227": {
+                "attribute": "0",
+                "name": "延时遥测指针读取结果错误标志",
+                "location": [
+                    867,
+                    867,
+                    5,
+                    5
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-228": {
+                "attribute": "0",
+                "name": "延时数传指针读取结果错误标志",
+                "location": [
+                    867,
+                    867,
+                    4,
+                    4
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-229": {
+                "attribute": "0",
+                "name": "本次挑时头指针获取结果错误标志",
+                "location": [
+                    867,
+                    867,
+                    3,
+                    3
+                ],
+                "flag": {
+                    "0": "正常",
+                    "1": "异常"
+                }
+            }
+        },
+        {
+            "TM-RCES-230": {
+                "attribute": "3",
+                "name": "预留",
+                "location": [
+                    867,
+                    867,
+                    0,
+                    2
+                ]
+            }
+        },
+        {
+            "TM-RCES-231": {
+                "attribute": "3",
+                "name": "龙泊球温传数据3",
+                "location": [
+                    868,
+                    868,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-232": {
+                "attribute": "3",
+                "name": "龙泊球温传数据4",
+                "location": [
+                    869,
+                    869,
+                    0,
+                    7
+                ]
+            }
+        },
+        {
+            "TM-RCES-233": {
+                "attribute": "3",
+                "name": "预留",
+                "location": [
+                    870,
+                    876,
+                    0,
+                    55
+                ]
+            }
+        },
+        {
+            "TM-RCES-234": {
+                "attribute": "1",
+                "name": "进入安全模式母线电压判据",
+                "location": [
+                    877,
+                    878,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-235": {
+                "attribute": "1",
+                "name": "退出安全模式母线电压判据",
+                "location": [
+                    879,
+                    880,
+                    0,
+                    15
+                ],
+                "trans": [
+                    "uchar",
+                    "0.019536",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-236": {
+                "attribute": "1",
+                "name": "进入安全模式母线电压维持时间",
+                "location": [
+                    881,
+                    881,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-237": {
+                "attribute": "1",
+                "name": "退出安全模式母线电压维持时间",
+                "location": [
+                    882,
+                    882,
+                    0,
+                    7
+                ],
+                "trans": [
+                    "uchar",
+                    "1",
+                    "0"
+                ]
+            }
+        },
+        {
+            "TM-RCES-238": {
+                "attribute": "1",
+                "name": "主循环计数",
+                "location": [
+                    883,
+                    886,
+                    0,
+                    31
+                ],
+                "trans": [
+                    "uint32",
+                    "1",
+                    "0"
+                ]
+            }
+        }
+    ]
+}

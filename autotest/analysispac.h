@@ -12,6 +12,8 @@
 #include <QVariantList>
 #include "dataexplain.h"
 #include <QQueue>
+#include <QVariant>
+#include <QMetaType>
 
 class AnalysisPac : public QObject
 {
@@ -26,7 +28,9 @@ public:
 
 signals:
 
-    void Send2Display(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void Send2Display(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void Send2Display(QVariant map2Display,QStringList resultList);
 
     void DetectisOver(QString command, QStringList resultList);
 
@@ -67,6 +71,8 @@ public:
     PacController();
     ~PacController();
 
+    void OpenJson(QString jsonName);
+
     //SLOT
 
     void buildMap();
@@ -82,7 +88,10 @@ public:
     void CommandnotFind(QString command);
 
     //tableWidget
-    void GetExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void GetExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void GetExplainInfo(QVariant map2Display,QStringList resultList);
+
 
 signals:
 
@@ -95,7 +104,10 @@ signals:
     void DetectFailed(QString command);
 
     //tableWidget
-    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList,QStringList resultList);
+//    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList,QStringList resultList);
+
+    void SendExplainInfo(QVariant map2Display,QStringList resultList);
+
 
 
 private:

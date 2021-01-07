@@ -6,6 +6,8 @@
 //#include "tabform.h"
 #include "tableform.h"
 #include "inittelemetrytable.h"
+#include <QMap>
+#include <QVariant>
 
 
 
@@ -21,9 +23,17 @@ public:
     explicit TelemetryForm(QWidget *parent = nullptr);
     ~TelemetryForm();
 
+    void OpenJsonFile(QString fileName);
+
+    QStringList GetNameFromMap(QString sysName);
+
     //SLOT
 
-    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void RecvExplainInfo(QVariant map2Display,QStringList resultList);
+
+
 
 signals:
 
@@ -47,6 +57,7 @@ signals:
     void R25_Display(QVariantList valueList, QVariantList hexList, QStringList resultList);
     void R26_Display(QVariantList valueList, QVariantList hexList, QStringList resultList);
     void R27_Display(QVariantList valueList, QVariantList hexList, QStringList resultList);
+
 
     void R19_Init(QStringList nameList, QStringList numList);
     void R20_Init(QStringList nameList, QStringList numList);

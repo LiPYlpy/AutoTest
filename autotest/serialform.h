@@ -41,7 +41,10 @@ public:
 
 
     //tableWidget
-    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+
+    void RecvExplainInfo(QVariant map2Display,QStringList resultList);
+
 
 signals:
     //传递串口参数值
@@ -78,8 +81,9 @@ signals:
 
 
     //tableWidget
-    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
+//    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
 
+    void SendExplainInfo(QVariant map2Display,QStringList resultList);
 
 private:
     Ui::SerialForm *ui;

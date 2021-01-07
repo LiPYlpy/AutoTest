@@ -1,9 +1,22 @@
 #include "analysispac.h"
 #include <QMap>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
 
 QQueue<QByteArray> pacQueue;   //数据源包存入的队列
 QMap<QString,int> numMap;      //波道号对应的编号
 QStringList cStringList;       //检测遥控指令
+
+QMap<QString,QStringList> sysMap; //分系统对应的数据编号
+QMap<QString,QStringList> divisionMap;  //各数据编号对应的类型、名、位置
+QMap<QString,QJsonValue> jsonMap;    //各数据编号对应的处理方式
+
+
+QMap<QString,QStringList> displayMap;
+
+QStringList subSysName;
 
 bool detectFlag = false;       //检测标志
 
@@ -248,7 +261,27 @@ void AnalysisPac::DataAnalyse()
         count--;
     }
     //将数据源包的解析结果和检测结果传出
-    emit Send2Display(sysName,valueList,hexList,resultList);
+//    emit Send2Display(sysName,valueList,hexList,resultList);
+
+     qRegisterMetaType<QVariant>("QVariant");
+     QVariant map2Display;
+     map2Display.setValue(displayMap);
+     emit Send2Display(map2Display,resultList);
+
+//    QString tmpName;
+//    for(int cnt=0;cnt < subSysName.size();cnt++)
+//    {
+//        tmpName = subSysName.at(cnt);
+//        QString attribute = sysMap.value(tmpName).at(0);
+//        QString name = sysMap.value(tmpName).at(1);
+//        int a,b,c,d;
+//        a = sysMap.value(tmpName).at(2).toInt();
+//        b = sysMap.value(tmpName).at(3).toInt();
+//        c = sysMap.value(tmpName).at(4).toInt();
+//        d = sysMap.value(tmpName).at(5).toInt();
+//        QString decItem = dataArea.mid(a,b).toHex();
+
+//    }
 }
 
 
@@ -282,6 +315,15 @@ PacController::PacController()
 
     pacWriteThread->start();
     pacReadThread->start();
+
+    //读取json文件
+    QString jsonName = "dataParse_v1.json";
+    OpenJson(jsonName);
+//    qDebug()<<subSysName;
+//    qDebug()<<sysMap;
+//    qDebug()<<divisionMap;
+//    qDebug()<<jsonMap;
+
 }
 
 PacController::~PacController()
@@ -294,6 +336,95 @@ PacController::~PacController()
     pacWriteThread->wait();
     pacReadThread->wait();
     qDebug()<<"析构 PacController";
+}
+
+void PacController::OpenJson(QString jsonName)
+{
+    QString fileDir = "../"+jsonName;
+    QFile file(fileDir);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString value = file.readAll();
+    file.close();
+
+    QJsonParseError parseJsonErr;
+    QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
+    if(!(parseJsonErr.error == QJsonParseError::NoError))
+    {
+        qDebug()<<tr("解析json文件错误！");
+        return;
+    }
+    QJsonObject jsonObject = document.object();
+
+    QJsonValue configValueList = jsonObject.value(QStringLiteral("config"));
+
+    foreach(QString i, configValueList.toObject().keys()){
+        QJsonArray array = configValueList.toObject().value(i).toArray();
+        QStringList subSys;
+        for(int k = 0;k<array.size();k++)
+        {
+            subSys<<array.at(k).toString();
+        }
+        sysMap.insert(i,subSys);
+        subSysName<<i;
+    }
+
+    if(jsonObject.contains(QStringLiteral("parse")))
+    {
+        QJsonValue arrayValue = jsonObject.value(QStringLiteral("parse"));
+        if(arrayValue.isArray())
+        {
+            QJsonArray parseArray = arrayValue.toArray();
+            for (int i = 0; i<parseArray.size(); i++ ) {
+                QJsonObject parseItem = parseArray.at(i).toObject();
+                QString dataName = parseItem.keys().at(0);
+                QJsonObject item = parseItem.begin()->toObject();
+                QString attribute = item.value(QStringLiteral("attribute")).toString();
+                QStringList info;
+                info<<attribute;
+                info<<item.value(QStringLiteral("name")).toString();
+                QJsonArray locationArray = item.value(QStringLiteral("location")).toArray();
+                for(int k = 0;k<locationArray.size();k++)
+                {
+                    info<<QString::number(locationArray.at(k).toInt());
+                }
+//                qDebug()<<"attribute:"<< attribute;
+                divisionMap.insert(dataName,info);
+                switch (attribute.toInt()) {
+                case 0:
+                {
+//                    QJsonObject flag = item.value(QStringLiteral("flag")).toObject();
+//                    foreach(QString i, flag.keys())
+//                    {
+//                        qDebug()<<i<<flag.value(i).toString();
+//                    }
+                    QJsonValue flag = item.value(QStringLiteral("flag"));
+                    jsonMap.insert(dataName,flag);
+                    break;
+                }
+                case 1:
+                {
+//                    QJsonArray trans = item.value(QStringLiteral("trans")).toArray();
+//                    for (int k = 0;k<trans.size();k++ ) {
+//                        qDebug()<<trans.at(k).toString();
+//                    }
+                    QJsonValue trans = item.value(QStringLiteral("trans"));
+                    jsonMap.insert(dataName,trans);
+                    break;
+                }
+                case 2:
+                {
+                    break;
+                }
+                case 3:
+                {
+                    break;
+                }
+                default:break;
+                }
+            }
+        }
+    }
+
 }
 
 //对应波道号和序号
@@ -1229,8 +1360,13 @@ void PacController::CommandnotFind(QString command)
     emit DetectFailed(command);
 }
 //解析、检测结果传出
-void PacController::GetExplainInfo(int sysName, QVariantList valueList, QVariantList hexList,QStringList resultList)
+//void PacController::GetExplainInfo(int sysName, QVariantList valueList, QVariantList hexList,QStringList resultList)
+//{
+//    emit SendExplainInfo(sysName, valueList, hexList,resultList);
+//}
+
+void PacController::GetExplainInfo(QVariant map2Display,QStringList resultList)
 {
-    emit SendExplainInfo(sysName, valueList, hexList,resultList);
+    emit SendExplainInfo(map2Display, resultList);
 }
 
