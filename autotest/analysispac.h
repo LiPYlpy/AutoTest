@@ -26,6 +26,14 @@ public:
 
     void DataAnalyse();
 
+    QStringList ResolveAttr_0_Switch(QString numName, QString str,int bit0, int bit1);
+
+    QStringList ReSolveAttr_1_Threshold(QString numName, QString str,int bit0, int bit1);
+
+    QStringList ReSolveAttr_2(QString numName, QString str,int bit0, int bit1);
+
+    QStringList ReSolveAttr_3(QString numName, QString str,int bit0, int bit1);
+
 signals:
 
 //    void Send2Display(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);

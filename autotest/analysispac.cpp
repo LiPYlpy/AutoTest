@@ -16,7 +16,7 @@ QMap<QString,QJsonValue> jsonMap;    //各数据编号对应的处理方式
 
 QMap<QString,QStringList> displayMap;
 
-QStringList subSysName;
+QStringList subSysName;        //分系统集合
 
 bool detectFlag = false;       //检测标志
 
@@ -263,25 +263,64 @@ void AnalysisPac::DataAnalyse()
     //将数据源包的解析结果和检测结果传出
 //    emit Send2Display(sysName,valueList,hexList,resultList);
 
-     qRegisterMetaType<QVariant>("QVariant");
-     QVariant map2Display;
-     map2Display.setValue(displayMap);
-     emit Send2Display(map2Display,resultList);
 
-//    QString tmpName;
-//    for(int cnt=0;cnt < subSysName.size();cnt++)
-//    {
-//        tmpName = subSysName.at(cnt);
-//        QString attribute = sysMap.value(tmpName).at(0);
-//        QString name = sysMap.value(tmpName).at(1);
-//        int a,b,c,d;
-//        a = sysMap.value(tmpName).at(2).toInt();
-//        b = sysMap.value(tmpName).at(3).toInt();
-//        c = sysMap.value(tmpName).at(4).toInt();
-//        d = sysMap.value(tmpName).at(5).toInt();
-//        QString decItem = dataArea.mid(a,b).toHex();
 
-//    }
+    QString numName;
+    for(int cnt=0;cnt < subSysName.size();cnt++)
+    {
+        numName = subSysName.at(cnt);//数据编号
+        QString attribute = sysMap.value(numName).at(0);//获取对应数据编号的attribute
+        QString name = sysMap.value(numName).at(1);//获取对应数据编号的数据名
+        int byte0,byte1,bit0,bit1; //
+        byte0 = sysMap.value(numName).at(2).toInt();
+        byte1 = sysMap.value(numName).at(3).toInt();
+        bit0 = sysMap.value(numName).at(4).toInt();
+        bit1 = sysMap.value(numName).at(5).toInt();
+        QString decItem = dataArea.mid(byte0,byte1-byte0+1).toHex();   //获取源码（QString格式）
+        int bitLen = (byte1-byte0+1)*8;
+        QString hexItem = QString("%1").arg(decItem.toInt(nullptr,16),bitLen, 2, QChar('0'));
+        QStringList displayList;  // 数据名 数据源码 数据值
+        displayList<<name;
+        switch (name.toInt()) {
+        case 0:
+            displayList<<ResolveAttr_0_Switch(numName,hexItem,bit0,bit1,bitLen);
+            displayMap.insert(numName,displayList);
+            break;
+        case 2:
+            displayList<<ReSolveAttr_1_Threshold(numName,decItem,bit0,bit1);
+            displayMap.insert(numName,displayList);
+            break;
+
+        }
+
+    }
+
+    qRegisterMetaType<QVariant>("QVariant");
+    QVariant map2Display;
+    map2Display.setValue(displayMap);
+    emit Send2Display(map2Display,resultList);
+
+}
+
+QStringList AnalysisPac::ResolveAttr_0_Switch(QString numName, QString str, int bit0, int bit1, int bitLen)
+{
+    QStringList displayList;
+    QString tmp = str.mid(bitLen-bit0-1,(bit0-bit1+1));
+    displayList << tmp;
+    QJsonObject flagObj = jsonMap.value(numName).toObject();
+    displayList << flagObj.value(tmp).toString();
+    return displayList;
+}
+
+QStringList AnalysisPac::ReSolveAttr_1_Threshold(QString numName, QString str, int bit0, int bit1)
+{
+    QStringList displayList;
+    QString tmp = str.mid(-bit1,bit1-bit0+1);
+
+    displayList << tmp;
+    QJsonObject flagObj = jsonMap.value(numName).toObject();
+    displayList << flagObj.value(tmp).toString();
+    return displayList;
 }
 
 
