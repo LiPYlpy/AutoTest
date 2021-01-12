@@ -7,10 +7,11 @@
 #include <QFile>
 #include <QDebug>
 #include <QString>
+//#include <QVariantList>
 
 QMap<QString,QStringList> teleSysMap; //分系统对应的数据编号
-QMap<QString,QString> findNameMap;
-QStringList teleSysName;
+QMap<QString,QString> findNameMap;    //数据编号对应的解析（此处只使用数据名）
+QStringList teleSysName;     //分系统名，表名 数字
 
 TelemetryForm::TelemetryForm(QWidget *parent) :
     QWidget(parent),
@@ -111,7 +112,8 @@ TelemetryForm::TelemetryForm(QWidget *parent) :
     ui->tabWidgetDisplay->insertTab(0,R19_tableForm,"R19_延时遥测11_测控系统A机");
     //初始化R19表
     connect(this,&TelemetryForm::R19_Init,R19_tableForm,&TableForm::InitTable);
-    emit R19_Init(R19_Name(),R19_Num());
+//    emit R19_Init(R19_Name(),R19_Num());
+    emit R19_Init(GetNameFromMap("19"),teleSysMap.value("19"));
     //设置R19表的更新信号槽
     connect(this,&TelemetryForm::R19_Display,R19_tableForm,&TableForm::UpdataUI);
 
@@ -119,49 +121,56 @@ TelemetryForm::TelemetryForm(QWidget *parent) :
     ui->tabWidgetDisplay->insertTab(0,R20_tableForm,"R20 实时遥测2_测控系统B机");
     connect(this,&TelemetryForm::R20_Init,R20_tableForm,&TableForm::InitTable);
     emit R20_Init(R20_Name(),R20_Num());
+//    emit R26_Init(GetNameFromMap("20"),teleSysMap.value("20"));
     connect(this,&TelemetryForm::R20_Display,R20_tableForm,&TableForm::UpdataUI);
 
     R21_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R21_tableForm,"R21 实时遥测3_轨控系统");
     connect(this,&TelemetryForm::R21_Init,R21_tableForm,&TableForm::InitTable);
-    emit R21_Init(R21_Name(),R21_Num());
+//    emit R21_Init(R21_Name(),R21_Num());
+    emit R21_Init(GetNameFromMap("21"),teleSysMap.value("21"));
     connect(this,&TelemetryForm::R21_Display,R21_tableForm,&TableForm::UpdataUI);
 
     R22_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R22_tableForm,"R22 实时遥测4_姿控系统");
     connect(this,&TelemetryForm::R22_Init,R22_tableForm,&TableForm::InitTable);
-    emit R22_Init(R22_Name(),R22_Num());
+//    emit R22_Init(R22_Name(),R22_Num());
+    emit R22_Init(GetNameFromMap("22"),teleSysMap.value("22"));
     connect(this,&TelemetryForm::R22_Display,R22_tableForm,&TableForm::UpdataUI);
 
     R23_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R23_tableForm,"R23 实时遥测5_电源系统");
     connect(this,&TelemetryForm::R23_Init,R23_tableForm,&TableForm::InitTable);
-    emit R23_Init(R23_Name(),R23_Num());
+//    emit R23_Init(R23_Name(),R23_Num());
+    emit R23_Init(GetNameFromMap("23"),teleSysMap.value("23"));
     connect(this,&TelemetryForm::R23_Display,R23_tableForm,&TableForm::UpdataUI);
 
     R24_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R24_tableForm,"R24 实时遥测6_GPS系统");
     connect(this,&TelemetryForm::R24_Init,R24_tableForm,&TableForm::InitTable);
-    emit R24_Init(R24_Name(),R24_Num());
+//    emit R24_Init(R24_Name(),R24_Num());
+    emit R24_Init(GetNameFromMap("24"),teleSysMap.value("24"));
     connect(this,&TelemetryForm::R24_Display,R24_tableForm,&TableForm::UpdataUI);
 
     R25_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R25_tableForm,"R25 实时遥测7_载荷");
     connect(this,&TelemetryForm::R25_Init,R25_tableForm,&TableForm::InitTable);
-    emit R25_Init(R25_Name(),R25_Num());
+//    emit R25_Init(R25_Name(),R25_Num());
+    emit R25_Init(GetNameFromMap("25"),teleSysMap.value("25"));
     connect(this,&TelemetryForm::R25_Display,R25_tableForm,&TableForm::UpdataUI);
 
     R26_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R26_tableForm,"R26 实时遥测8_综合电子系统");
     connect(this,&TelemetryForm::R26_Init,R26_tableForm,&TableForm::InitTable);
 //    emit R26_Init(R26_Name(),R26_Num());
-    emit R26_Init(GetNameFromMap("RCES"),teleSysMap.value("RCES"));
+    emit R26_Init(GetNameFromMap("26"),teleSysMap.value("26"));
     connect(this,&TelemetryForm::R26_Display,R26_tableForm,&TableForm::UpdataUI);
 
     R27_tableForm = new TableForm(this);
     ui->tabWidgetDisplay->insertTab(0,R27_tableForm,"R27 实时遥测9_操作系统");
     connect(this,&TelemetryForm::R27_Init,R27_tableForm,&TableForm::InitTable);
-    emit R27_Init(R27_Name(),R27_Num());
+//    emit R27_Init(R27_Name(),R27_Num());
+    emit R27_Init(GetNameFromMap("27"),teleSysMap.value("27"));
     connect(this,&TelemetryForm::R27_Display,R27_tableForm,&TableForm::UpdataUI);
 
     for (int i = 0; i<27; i++ ) {
@@ -306,11 +315,51 @@ QStringList TelemetryForm::GetNameFromMap(QString sysName)
         nameList<<findNameMap.value(numList.at(i));
     }
     return nameList;
+
 }
 
 void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList)
 {
     QMap<QString,QStringList> displayMap = map2Display.value<QMap<QString,QStringList>>();
+    qDebug()<<displayMap;
+    for (int i=0; i<teleSysName.size() ; i++ ) {
+        QString tableName = teleSysName.at(i);
+        QStringList sysNumList = teleSysMap.value(tableName);
+        QVariantList valueList;
+        QVariantList hexList;
+        for (int j=0;j<sysNumList.size() ; j++ ) {
+            hexList<<displayMap.value(sysNumList.at(j)).at(1);
+            valueList<<displayMap.value(sysNumList.at(j)).at(2);
+        }
+        switch (tableName.toInt()) {
+        case 19:
+            emit R19_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 21:
+            emit R21_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 22:
+            emit R22_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 23:
+            emit R23_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 24:
+            emit R24_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 25:
+            emit R25_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 26:
+            emit R26_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        case 27:
+            emit R27_Display(valueList,hexList,resultList.mid(0,valueList.size()));
+            break;
+        default:
+            break;
+        }
+    }
 
 }
 

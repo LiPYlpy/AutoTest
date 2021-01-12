@@ -26,13 +26,13 @@ public:
 
     void DataAnalyse();
 
-    QStringList ResolveAttr_0_Switch(QString numName, QString str,int bit0, int bit1);
+    QStringList ResolveAttr_0_Switch(QString numName, QString str,int bit0, int bit1, int bitLen);
 
-    QStringList ReSolveAttr_1_Threshold(QString numName, QString str,int bit0, int bit1);
+    QStringList ReSolveAttr_1_Threshold(QString numName, QString str);
 
-    QStringList ReSolveAttr_2(QString numName, QString str,int bit0, int bit1);
+//    QStringList ReSolveAttr_2(QString numName, QString str,int bit0, int bit1, int bitLen);
 
-    QStringList ReSolveAttr_3(QString numName, QString str,int bit0, int bit1);
+    QStringList ReSolveAttr_4(QString str);
 
 signals:
 

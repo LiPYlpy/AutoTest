@@ -265,35 +265,50 @@ void AnalysisPac::DataAnalyse()
 
 
 
-    QString numName;
+
     for(int cnt=0;cnt < subSysName.size();cnt++)
     {
-        numName = subSysName.at(cnt);//数据编号
-        QString attribute = sysMap.value(numName).at(0);//获取对应数据编号的attribute
-        QString name = sysMap.value(numName).at(1);//获取对应数据编号的数据名
-        int byte0,byte1,bit0,bit1; //
-        byte0 = sysMap.value(numName).at(2).toInt();
-        byte1 = sysMap.value(numName).at(3).toInt();
-        bit0 = sysMap.value(numName).at(4).toInt();
-        bit1 = sysMap.value(numName).at(5).toInt();
-        QString decItem = dataArea.mid(byte0,byte1-byte0+1).toHex();   //获取源码（QString格式）
-        int bitLen = (byte1-byte0+1)*8;
-        QString hexItem = QString("%1").arg(decItem.toInt(nullptr,16),bitLen, 2, QChar('0'));
-        QStringList displayList;  // 数据名 数据源码 数据值
-        displayList<<name;
-        switch (name.toInt()) {
-        case 0:
-            displayList<<ResolveAttr_0_Switch(numName,hexItem,bit0,bit1,bitLen);
-            displayMap.insert(numName,displayList);
-            break;
-        case 2:
-            displayList<<ReSolveAttr_1_Threshold(numName,decItem,bit0,bit1);
-            displayMap.insert(numName,displayList);
-            break;
+        QString numName = subSysName.at(cnt);//数据编号
 
+        QStringList numList = sysMap.value(numName);
+        for(int i = 0;i<numList.size();i++)
+        {
+            QString numThis = numList.at(i);
+            QString attribute = divisionMap.value(numThis).at(0);//获取对应数据编号的attribute
+            QString name = divisionMap.value(numThis).at(1);//获取对应数据编号的数据名
+            int byte0,byte1,bit0,bit1; //
+            byte0 = divisionMap.value(numThis).at(2).toInt();
+            byte1 = divisionMap.value(numThis).at(3).toInt();
+            bit0 = divisionMap.value(numThis).at(4).toInt();
+            bit1 = divisionMap.value(numThis).at(5).toInt();
+            QString decItem = dataArea.mid(byte0,byte1-byte0+1).toHex();   //获取源码（QString格式）
+            int bitLen = (byte1-byte0+1)*8;
+            QString hexItem = QString("%1").arg(decItem.toInt(nullptr,16),bitLen, 2, QChar('0'));
+            QStringList displayList;  // 数据名 数据源码 数据值
+            displayList<<name;
+            switch (attribute.toInt()) {
+            case 0:
+                displayList<<ResolveAttr_0_Switch(numThis,hexItem,bit0,bit1,bitLen);
+                displayMap.insert(numThis,displayList);
+                break;
+            case 1:
+                displayList<<ReSolveAttr_1_Threshold(numThis,decItem);
+                displayMap.insert(numThis,displayList);
+                break;
+            case 3:
+                displayList<<decItem<<decItem;
+                displayMap.insert(numThis,displayList);
+                break;
+            case 4:
+                displayList<<ReSolveAttr_4(decItem);
+                displayMap.insert(numThis,displayList);
+                break;
+            default:
+                break;
+            }
         }
-
     }
+    qDebug()<<displayMap.size();
 
     qRegisterMetaType<QVariant>("QVariant");
     QVariant map2Display;
@@ -308,18 +323,95 @@ QStringList AnalysisPac::ResolveAttr_0_Switch(QString numName, QString str, int 
     QString tmp = str.mid(bitLen-bit0-1,(bit0-bit1+1));
     displayList << tmp;
     QJsonObject flagObj = jsonMap.value(numName).toObject();
-    displayList << flagObj.value(tmp).toString();
+    if(flagObj.contains(tmp))
+        displayList << flagObj.value(tmp).toString();
+    else
+        displayList<<tmp;
     return displayList;
 }
 
-QStringList AnalysisPac::ReSolveAttr_1_Threshold(QString numName, QString str, int bit0, int bit1)
+QStringList AnalysisPac::ReSolveAttr_1_Threshold(QString numName, QString str)
 {
     QStringList displayList;
-    QString tmp = str.mid(-bit1,bit1-bit0+1);
 
-    displayList << tmp;
-    QJsonObject flagObj = jsonMap.value(numName).toObject();
-    displayList << flagObj.value(tmp).toString();
+    displayList << str;
+    QJsonArray transArray = jsonMap.value(numName).toArray();
+    QString dataType = transArray.at(0).toString();
+    float multi = transArray.at(1).toString().toFloat();
+    float plus = transArray.at(2).toString().toFloat();
+    QStringList typeIndex;
+    typeIndex<<"uchar"<<"uint16"<<"uint32"<<"char"<<"int16"<<"int32"<<"float";
+    switch (typeIndex.indexOf(dataType)) {
+    case 0:
+    {
+        uchar temp = str.toUInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 1:
+    {
+        quint16 temp= str.toUInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 2:
+    {
+        quint32 temp = str.toUInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 3:
+    {
+        char temp = str.toInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 4:
+    {
+        qint16 temp = str.toInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 5:
+    {
+        qint32 temp = str.toInt(nullptr,16);
+        float res;
+        res = temp*multi+plus;
+        displayList<<QString("%1").arg(res);
+        break;
+    }
+    case 6:
+    {
+        qint32 c = str.toInt(nullptr,16);
+        float temp = *(float*)&c;
+        temp = temp*multi+plus;
+        displayList<<QString("%1").arg(temp);
+        qDebug()<<QString("%1").arg(temp);
+        break;
+    }
+    default:
+        break;
+    }
+    return displayList;
+}
+
+QStringList AnalysisPac::ReSolveAttr_4(QString str)
+{
+    QStringList displayList;
+    displayList<<str;
+    QString time;
+    time = "20"+str.mid(0,2)+"年"+str.mid(2,2)+"月"+str.mid(4,2)+"日"+" "+str.mid(8,2)+"时"+str.mid(10,2)+"分"+str.mid(12,2)+"秒"+str.mid(14,2)+"百分秒";
+    displayList<<time;
     return displayList;
 }
 
@@ -363,6 +455,17 @@ PacController::PacController()
 //    qDebug()<<divisionMap;
 //    qDebug()<<jsonMap;
 
+//    QString str= "3fffff";
+//    qint32 c = str.toUInt(nullptr, 16);
+//    float d = *(float*)&c;
+//    QString radiation = QString("%1").arg(d);
+//    qDebug()<<d;
+
+//    char tmp = -55;
+//    QStringList strList;
+//    strList<<QString::number(tmp);
+//    qDebug()<<strList;
+
 }
 
 PacController::~PacController()
@@ -385,6 +488,7 @@ void PacController::OpenJson(QString jsonName)
     QString value = file.readAll();
     file.close();
 
+//    int count = 0;
     QJsonParseError parseJsonErr;
     QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
     if(!(parseJsonErr.error == QJsonParseError::NoError))
@@ -414,6 +518,7 @@ void PacController::OpenJson(QString jsonName)
         {
             QJsonArray parseArray = arrayValue.toArray();
             for (int i = 0; i<parseArray.size(); i++ ) {
+                count++;
                 QJsonObject parseItem = parseArray.at(i).toObject();
                 QString dataName = parseItem.keys().at(0);
                 QJsonObject item = parseItem.begin()->toObject();
@@ -450,11 +555,11 @@ void PacController::OpenJson(QString jsonName)
                     jsonMap.insert(dataName,trans);
                     break;
                 }
-                case 2:
+                case 3:
                 {
                     break;
                 }
-                case 3:
+                case 4:
                 {
                     break;
                 }
@@ -463,7 +568,6 @@ void PacController::OpenJson(QString jsonName)
             }
         }
     }
-
 }
 
 //对应波道号和序号
