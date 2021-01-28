@@ -24,6 +24,10 @@ public:
 
     void BuildMap();
 
+    void OpenOrderFile(QString fileName);
+
+    void BuildCommandList();
+
 signals:
 
     void TxtSend(QStringList lineStr);
@@ -31,6 +35,11 @@ signals:
 private:
     Ui::RCForm *ui;
     QStringList commandList;
+    QStringList diyList;
+    QString dOrderHead;
+    QString dOrderTail;
+    QString indOrderHead;
+    QString indOrderTail;
 };
 
 #endif // RCFORM_H

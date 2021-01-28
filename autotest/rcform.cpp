@@ -2,9 +2,18 @@
 #include "ui_rcform.h"
 #include <QDebug>
 #include <QMap>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
 
 QMap<int,QString> nameMap;
 
+//<分系统名，指令名List>
+QMap<QString,QStringList> sysOrderNameMap;
+
+//<指令名，规定格式指令内容（指令类型，指令，延时，对应标准状态）>
+QMap<QString,QStringList> orderContentMap;
 
 
 RCForm::RCForm(QWidget *parent) :
@@ -57,9 +66,9 @@ RCForm::RCForm(QWidget *parent) :
     /*********************************************************************************/
     //comboBox 分系统
 
-    ui->comboBoxSubSys->addItems(QStringList()<<"DTTCA测控系统应答机A"<<"DTTCB测控系统应答机B"
+    ui->comboBoxSubSys->addItems(QStringList()<<"DTTC测控系统应答机"<<"CES综合电子系统"
                                  <<"OCS轨控系统"<<"ADCS姿控系统"<<"OS操作系统"<<"EPS电源系统"
-                                 <<"ISRS星间测距系统"<<"ZH载荷系统"<<"CES综合电子系统"<<"GNSS系统");
+                                 <<"ZH载荷系统"<<"GNSS系统");
 
     //默认没有内容
     ui->comboBoxSubSys->setCurrentIndex(-1);
@@ -102,17 +111,23 @@ RCForm::RCForm(QWidget *parent) :
     ///////////////////////////////////////////////////////////////////////////////////
 
 
+    //读取指令的配置文件
+    QString jsonName = "TC.json";
+    OpenOrderFile(jsonName);
+
+
 
     connect(ui->btnOpenTxt,&QPushButton::clicked,[=](){
         //打开文件选择对话框，选择文件，获取文件路径
         QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open image file"),
-                    "./", tr("List files(*.txt *.php *.dpl *.m3u *.m3u8 *.xspf );;All files (*.*)"));
+                    "./", tr("List files(*.txt *.json *.php *.dpl *.m3u *.m3u8 *.xspf );;All files (*.*)"));
         if(fileName.isEmpty()){
             ui->hisTextBrowser->append("用户取消操作！！");
         }
         else {
             ui->hisTextBrowser->setText(fileName);//显示文件路径
+
             QFile f(fileName);
             //if打开失败
             if(!f.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -121,26 +136,74 @@ RCForm::RCForm(QWidget *parent) :
                 return;
             }
             ui->hisTextBrowser->append("打开成功！");
-            QTextStream txtInput(&f);
-            txtInput.setCodec("utf-8");
-            QString lineStr;
-            //读取文件所有内容
-            while(!txtInput.atEnd())
+
+            QFileInfo fileInfo = QFileInfo(fileName);
+
+            if(fileInfo.suffix()!="json")
             {
-                commandList << txtInput.readLine();
+                QTextStream txtInput(&f);
+                txtInput.setCodec("utf-8");
+                QString lineStr;
+                //读取文件所有内容
+                while(!txtInput.atEnd())
+                {
+                    commandList << txtInput.readLine();
+                }
+                foreach(auto item,commandList)
+                    lineStr=lineStr + item + "\n";
+                ui->showTextEdit->setText(lineStr);//显示txt文件内容
             }
-            foreach(auto item,commandList)
-                lineStr=lineStr + item + "\n";
-            ui->showTextEdit->setText(lineStr);//显示txt文件内容
+            else
+            {
+                QString value = f.readAll();
+//                ui->showTextEdit->setText(value); //显示读取内容
+                QJsonParseError parseJsonErr;
+                QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
+                if(!(parseJsonErr.error == QJsonParseError::NoError))
+                {
+                    qDebug()<<tr("解析json文件错误！");
+                    return;
+                }
+                QJsonObject jsonObject = document.object();
+//                qDebug()<<jsonObject;
+                foreach(QString i, jsonObject.keys())
+                {
+                    QJsonArray array = jsonObject.value(i).toArray();
+                    for (int j = 0;j<array.size() ;j++ ) {
+                        QJsonObject orderItem = array.at(j).toObject();
+                        QString orderName = orderItem.value("name").toString();
+                        QString order = orderItem.value("order").toString();
+                        QString orderDelay = orderItem.value("delay").toString();
+                        QJsonObject target = orderItem.value("target").toObject();
+                        qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+                    }
+                }
+            }
             f.close();
         }
     });
 
+    ui->btnOrderSend->setEnabled(false);
+
+    connect(ui->btnSetOrder,&QPushButton::clicked,[=](){
+       dOrderHead = ui->headLineEdit->text();
+       dOrderTail = ui->tailLineEdit->text();
+       indOrderHead = ui->head2LineEdit->text();
+       indOrderTail = ui->tail2LineEdit->text();
+//       qDebug()<<orderHead<<orderTail;
+       ui->btnOrderSend->setEnabled(true);
+    });
+
     //顺序发送按钮
     connect(ui->btnOrderSend,&QPushButton::clicked,[=](){
-        emit TxtSend(commandList);
+        BuildCommandList();
+//        emit TxtSend(commandList);
+        qDebug()<<commandList;
+        for(int i=0;i<commandList.size();i++)
+            ui->showTextEdit->append(commandList.at(i));
         ui->hisTextBrowser->append("发送成功");
         ui->textBrowser->append("///////////////");
+        ui->comboBoxSubSys->setCurrentIndex(-1);
     });
 
     //发送按钮
@@ -1130,4 +1193,170 @@ void RCForm::BuildMap()
     nameMap.insert(i,"TM-ROS-04");i++;
     nameMap.insert(i,"TM-ROS-05");i++;
     nameMap.insert(i,"TM-ROS-06");i++;
+}
+
+void RCForm::OpenOrderFile(QString fileName)
+{
+    QString fileDir = "../"+fileName;
+    QFile file(fileDir);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString value = file.readAll();
+    file.close();
+
+    QJsonParseError parseJsonErr;
+    QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
+    if(!(parseJsonErr.error == QJsonParseError::NoError))
+    {
+        qDebug()<<tr("解析json文件错误！");
+        return;
+    }
+    QJsonObject jsonObject = document.object();
+    foreach(QString i, jsonObject.keys())
+    {
+        QJsonArray array = jsonObject.value(i).toArray();
+        QStringList nameList;
+        QStringList orderList;
+        for (int j = 0;j<array.size() ;j++ ) {
+            QJsonObject orderItem = array.at(j).toObject();
+            QString orderName = orderItem.value("name").toString();
+            nameList<<orderName;
+            orderList.clear();
+            QString order = orderItem.value("order").toString();
+            orderList<<order;
+            QString orderDelay = orderItem.value("delay").toString();
+            orderList<<orderDelay;
+            QJsonObject target = orderItem.value("target").toObject();
+//            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+            QString sdStatus;
+            foreach(QString k,target.keys())
+            {
+                QJsonObject targetItem = target.value(k).toObject();
+                sdStatus.clear();
+                if(targetItem.value("attribute").toString() == "0")
+                {
+                    sdStatus = k +" "+"0"+" "+targetItem.value("content").toString();
+                    orderList<<sdStatus;
+                    continue;
+                }
+                if(targetItem.value("attribute").toString() == "1")
+                {
+                    QString tmp = targetItem.value("content").toString();
+                    QStringList temp = tmp.split("-");
+                    sdStatus = k + " " + "1" + " " + temp.at(0) + " " + temp.at(1);
+                    orderList<<sdStatus;
+                    continue;
+                }
+            }
+            orderContentMap.insert(orderName,orderList);
+        }
+        sysOrderNameMap.insert(i,nameList);
+    }
+    qDebug()<<sysOrderNameMap;
+    qDebug()<<orderContentMap;
+}
+
+void RCForm::BuildCommandList()
+{
+    commandList.clear();
+    int index = ui->comboBoxSubSys->currentIndex();
+    QStringList cList;
+    QString order;
+    QString temp;
+    QString head;
+    QString tail;
+    switch (index) {
+    case -1:{
+        for (int i=0; i<diyList.size();i++ ) {
+            commandList<<"######";
+            cList = orderContentMap.value(diyList.at(i));
+            if(cList.at(0)=="0")
+            {
+                head = dOrderHead;
+                tail = dOrderTail;
+            }
+            else
+            {
+                head = indOrderHead;
+                tail = indOrderTail;
+            }
+            temp = cList.at(1);
+            order = head + temp + temp + temp + tail;
+            commandList<<order;
+            commandList<<cList.at(2);
+            for (int j=3;j<cList.size();j++) {
+                commandList<<cList.at(j);
+            }
+        }
+        break;
+    }
+    case 0:{//DTTC测控系统应答机
+        break;
+    }
+    case 1:{//CES综合电子系统
+        QStringList tmpList = sysOrderNameMap.value("RCES");
+        for (int i=0; i<tmpList.size() ;i++ ) {
+            commandList<<"######";
+            cList = orderContentMap.value(tmpList.at(i));
+            if(cList.at(0)=="0")
+            {
+                head = dOrderHead;
+                tail = dOrderTail;
+            }
+            else
+            {
+                head = indOrderHead;
+                tail = indOrderTail;
+            }
+            temp = cList.at(1);
+            order = head + temp + temp + temp + tail;
+            commandList<<order;
+            commandList<<cList.at(2);
+            for (int j=3;j<cList.size();j++) {
+                commandList<<cList.at(j);
+            }
+        }
+        break;
+    }
+    case 2:{//OCS轨控系统
+        break;
+    }
+    case 3:{//ADCS姿控系统
+        QStringList tmpList = sysOrderNameMap.value("RADCS");
+        for (int i=0; i<tmpList.size() ;i++ ) {
+            commandList<<"######";
+            cList = orderContentMap.value(tmpList.at(i));
+            if(cList.at(0)=="0")
+            {
+                head = dOrderHead;
+                tail = dOrderTail;
+            }
+            else
+            {
+                head = indOrderHead;
+                tail = indOrderTail;
+            }
+            temp = cList.at(1);
+            order = head + temp + temp + temp + tail;
+            commandList<<order;
+            commandList<<cList.at(2);
+            for (int j=3;j<cList.size();j++) {
+                commandList<<cList.at(j);
+            }
+        }
+        break;
+    }
+    case 4:{//OS操作系统
+        break;
+    }
+    case 5:{//EPS电源系统
+        break;
+    }
+    case 6:{//ZH载荷系统
+        break;
+    }
+    case 7:{//GNSS系统
+        break;
+    }
+    default:break;
+    }
 }

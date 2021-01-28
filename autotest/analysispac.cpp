@@ -216,7 +216,7 @@ void AnalysisPac::DataAnalyse()
         if(count>0 && (hexList.at(697).toString()==command || hexList.at(698).toString()== command))
         {
             //获取卫星标准状态
-            for(int i = 1; i<cStringList.size();i++)
+            for(int i = 2; i<cStringList.size();i++)
             {
                 rule = cStringList.at(i);
                 ruleList = rule.split(" ");
@@ -1481,7 +1481,10 @@ void PacController::SavePacData(QByteArray byteArray)
 void PacController::GetStandardState(QStringList byteArray)
 {
     detectFlag = true;
-    count = 6; //设置12帧的检测时间
+//    count = 6; //设置12帧的检测时间
+    //检测时间更改
+    count = byteArray.at(1).toInt();
+    qDebug()<<"Delay:"<<count;
     cStringList = byteArray;
 }
 //指令检测完成，检测标志为false，count归零
