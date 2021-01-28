@@ -1,0 +1,40 @@
+{
+"RCES":
+    [   
+        {	"name":"K142",
+        	"order":"11de",
+            "delay":"5",
+        	"target":{"TM-RCES-18":{"attribute":"0","content":"1"}}
+        },
+        {	"name":"K143",
+        	"order":"11f9",
+            "delay":"5",
+        	"target":{"TM-RCES-18":{"attribute":"0","content":"0"}}
+        },
+
+
+        {	"name":"K146",
+        	"order":"125a",
+            "delay":"5",
+        	"target":{   "TM-RCES-16":{"attribute":"0","content":"1"},
+                "TM-REPS-75":{"attribute":"0","content":"1"}
+            }
+        },
+        {	"name":"K147",
+        	"order":"127d",
+            "delay":"5",
+        	"target":{   "TM-RCES-16":{"attribute":"0","content":"0"},
+                "TM-REPS-75":{"attribute":"0","content":"0"},
+                "TM-REPS-22":{"attribute":"1","content":"0.5-0.75"}
+            }
+        }
+    ],
+    "RADCS":
+    [
+        {	"name":"K142",
+        	"order":"11de",
+            "delay":"5",
+        	"target":{"TM-RCES-18":{"attribute":"0","content":"1"}}
+        }
+    ]
+}
