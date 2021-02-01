@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <QFile>
 
-QMap<int,QString> nameMap;
+//QMap<int,QString> nameMap;
 
 //<分系统名，指令名List>
 QMap<QString,QStringList> sysOrderNameMap;
@@ -112,8 +112,11 @@ RCForm::RCForm(QWidget *parent) :
 
 
     //读取指令的配置文件
-    QString jsonName = "TC.json";
-    OpenOrderFile(jsonName);
+    QString jsonName = "TClib.json";
+    connect(ui->btnSearch,&QPushButton::clicked,[=](){
+        OpenOrderFile(jsonName);
+    });
+
 
 
 
@@ -145,12 +148,16 @@ RCForm::RCForm(QWidget *parent) :
                 txtInput.setCodec("utf-8");
                 QString lineStr;
                 //读取文件所有内容
-                while(!txtInput.atEnd())
-                {
-                    commandList << txtInput.readLine();
-                }
-                foreach(auto item,commandList)
-                    lineStr=lineStr + item + "\n";
+//                while(!txtInput.atEnd())
+//                {
+//                    commandList << txtInput.readLine();
+//                }
+//                foreach(auto item,commandList)
+//                    lineStr=lineStr + item + "\n";
+
+                lineStr = txtInput.readLine();
+                diyList = lineStr.split(",");
+                qDebug()<<diyList;
                 ui->showTextEdit->setText(lineStr);//显示txt文件内容
             }
             else
@@ -216,8 +223,8 @@ RCForm::RCForm(QWidget *parent) :
         ui->hisTextBrowser->append("发送成功");
     });
 
-    //建立序号和波道名的Map
-    BuildMap();
+//    //建立序号和波道名的Map
+//    BuildMap();
 }
 
 RCForm::~RCForm()
@@ -277,9 +284,10 @@ void RCForm::DisplayDetectResult(QString command, QStringList resultList)
             if(resultList.at(i)=="false")  //检测到错误
             {
                 flag = false;
-                index = nameMap.find(i).value();
-                index = index + " : error occurred;";
-                ui->textBrowser->append(index);
+//                index = nameMap.find(i).value();
+//                index = index + " : error occurred;";
+//                ui->textBrowser->append(index);
+                ui->textBrowser->append("error occurred!");
             }
         }
         if(flag)   //未检测到错误
@@ -293,6 +301,7 @@ void RCForm::DisplayDetectResult(QString command, QStringList resultList)
 
 }
 
+/*
 //建立序号和波道名的Map
 void RCForm::BuildMap()
 {
@@ -1194,6 +1203,7 @@ void RCForm::BuildMap()
     nameMap.insert(i,"TM-ROS-05");i++;
     nameMap.insert(i,"TM-ROS-06");i++;
 }
+*/
 
 void RCForm::OpenOrderFile(QString fileName)
 {
@@ -1213,28 +1223,27 @@ void RCForm::OpenOrderFile(QString fileName)
     QJsonObject jsonObject = document.object();
     foreach(QString i, jsonObject.keys())
     {
-        QJsonArray array = jsonObject.value(i).toArray();
-        QStringList nameList;
+        QJsonObject obj = jsonObject.value(i).toObject();
         QStringList orderList;
-        for (int j = 0;j<array.size() ;j++ ) {
-            QJsonObject orderItem = array.at(j).toObject();
-            QString orderName = orderItem.value("name").toString();
-            nameList<<orderName;
-            orderList.clear();
-            QString order = orderItem.value("order").toString();
-            orderList<<order;
-            QString orderDelay = orderItem.value("delay").toString();
-            orderList<<orderDelay;
-            QJsonObject target = orderItem.value("target").toObject();
-//            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+        orderList<<obj.value(QStringLiteral("type")).toString();
+        orderList<<obj.value(QStringLiteral("name")).toString();
+        orderList<<obj.value(QStringLiteral("order")).toString();
+        orderList<<obj.value(QStringLiteral("delay")).toString();
+        QJsonObject target = obj.value(QStringLiteral("target")).toObject();
+        if(target.isEmpty())
+        {
+            orderList<<" ";
+        }
+        else
+        {
             QString sdStatus;
-            foreach(QString k,target.keys())
+            foreach(QString k, target.keys())
             {
                 QJsonObject targetItem = target.value(k).toObject();
                 sdStatus.clear();
                 if(targetItem.value("attribute").toString() == "0")
                 {
-                    sdStatus = k +" "+"0"+" "+targetItem.value("content").toString();
+                    sdStatus = k + " " + "0" + " " + targetItem.value("content").toString();
                     orderList<<sdStatus;
                     continue;
                 }
@@ -1247,11 +1256,50 @@ void RCForm::OpenOrderFile(QString fileName)
                     continue;
                 }
             }
-            orderContentMap.insert(orderName,orderList);
         }
-        sysOrderNameMap.insert(i,nameList);
+        orderContentMap.insert(i,orderList);
+
+
+
+//        QJsonArray array = jsonObject.value(i).toArray();
+//        QStringList nameList;
+//        QStringList orderList;
+//        for (int j = 0;j<array.size() ;j++ ) {
+//            QJsonObject orderItem = array.at(j).toObject();
+//            QString orderName = orderItem.value("name").toString();
+//            nameList<<orderName;
+//            orderList.clear();
+//            QString order = orderItem.value("order").toString();
+//            orderList<<order;
+//            QString orderDelay = orderItem.value("delay").toString();
+//            orderList<<orderDelay;
+//            QJsonObject target = orderItem.value("target").toObject();
+////            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+//            QString sdStatus;
+//            foreach(QString k,target.keys())
+//            {
+//                QJsonObject targetItem = target.value(k).toObject();
+//                sdStatus.clear();
+//                if(targetItem.value("attribute").toString() == "0")
+//                {
+//                    sdStatus = k +" "+"0"+" "+targetItem.value("content").toString();
+//                    orderList<<sdStatus;
+//                    continue;
+//                }
+//                if(targetItem.value("attribute").toString() == "1")
+//                {
+//                    QString tmp = targetItem.value("content").toString();
+//                    QStringList temp = tmp.split("-");
+//                    sdStatus = k + " " + "1" + " " + temp.at(0) + " " + temp.at(1);
+//                    orderList<<sdStatus;
+//                    continue;
+//                }
+//            }
+//            orderContentMap.insert(orderName,orderList);
+//        }
+//        sysOrderNameMap.insert(i,nameList);
     }
-    qDebug()<<sysOrderNameMap;
+//    qDebug()<<sysOrderNameMap;
     qDebug()<<orderContentMap;
 }
 
@@ -1268,7 +1316,14 @@ void RCForm::BuildCommandList()
     case -1:{
         for (int i=0; i<diyList.size();i++ ) {
             commandList<<"######";
+            qDebug()<<diyList;
+            if(!orderContentMap.contains(diyList.at(i)))
+            {
+                //需要设置不存在该指令的提示，在后续发送之中也要处理这个特殊情况
+                continue;
+            }
             cList = orderContentMap.value(diyList.at(i));
+            qDebug()<<cList;
             if(cList.at(0)=="0")
             {
                 head = dOrderHead;
@@ -1279,11 +1334,11 @@ void RCForm::BuildCommandList()
                 head = indOrderHead;
                 tail = indOrderTail;
             }
-            temp = cList.at(1);
+            temp = cList.at(2);
             order = head + temp + temp + temp + tail;
             commandList<<order;
-            commandList<<cList.at(2);
-            for (int j=3;j<cList.size();j++) {
+            commandList<<cList.at(3);
+            for (int j=4;j<cList.size();j++) {
                 commandList<<cList.at(j);
             }
         }
@@ -1293,57 +1348,57 @@ void RCForm::BuildCommandList()
         break;
     }
     case 1:{//CES综合电子系统
-        QStringList tmpList = sysOrderNameMap.value("RCES");
-        for (int i=0; i<tmpList.size() ;i++ ) {
-            commandList<<"######";
-            cList = orderContentMap.value(tmpList.at(i));
-            if(cList.at(0)=="0")
-            {
-                head = dOrderHead;
-                tail = dOrderTail;
-            }
-            else
-            {
-                head = indOrderHead;
-                tail = indOrderTail;
-            }
-            temp = cList.at(1);
-            order = head + temp + temp + temp + tail;
-            commandList<<order;
-            commandList<<cList.at(2);
-            for (int j=3;j<cList.size();j++) {
-                commandList<<cList.at(j);
-            }
-        }
-        break;
+//        QStringList tmpList = sysOrderNameMap.value("RCES");
+//        for (int i=0; i<tmpList.size() ;i++ ) {
+//            commandList<<"######";
+//            cList = orderContentMap.value(tmpList.at(i));
+//            if(cList.at(0)=="0")
+//            {
+//                head = dOrderHead;
+//                tail = dOrderTail;
+//            }
+//            else
+//            {
+//                head = indOrderHead;
+//                tail = indOrderTail;
+//            }
+//            temp = cList.at(1);
+//            order = head + temp + temp + temp + tail;
+//            commandList<<order;
+//            commandList<<cList.at(2);
+//            for (int j=3;j<cList.size();j++) {
+//                commandList<<cList.at(j);
+//            }
+//        }
+//        break;
     }
     case 2:{//OCS轨控系统
         break;
     }
     case 3:{//ADCS姿控系统
-        QStringList tmpList = sysOrderNameMap.value("RADCS");
-        for (int i=0; i<tmpList.size() ;i++ ) {
-            commandList<<"######";
-            cList = orderContentMap.value(tmpList.at(i));
-            if(cList.at(0)=="0")
-            {
-                head = dOrderHead;
-                tail = dOrderTail;
-            }
-            else
-            {
-                head = indOrderHead;
-                tail = indOrderTail;
-            }
-            temp = cList.at(1);
-            order = head + temp + temp + temp + tail;
-            commandList<<order;
-            commandList<<cList.at(2);
-            for (int j=3;j<cList.size();j++) {
-                commandList<<cList.at(j);
-            }
-        }
-        break;
+//        QStringList tmpList = sysOrderNameMap.value("RADCS");
+//        for (int i=0; i<tmpList.size() ;i++ ) {
+//            commandList<<"######";
+//            cList = orderContentMap.value(tmpList.at(i));
+//            if(cList.at(0)=="0")
+//            {
+//                head = dOrderHead;
+//                tail = dOrderTail;
+//            }
+//            else
+//            {
+//                head = indOrderHead;
+//                tail = indOrderTail;
+//            }
+//            temp = cList.at(1);
+//            order = head + temp + temp + temp + tail;
+//            commandList<<order;
+//            commandList<<cList.at(2);
+//            for (int j=3;j<cList.size();j++) {
+//                commandList<<cList.at(j);
+//            }
+//        }
+//        break;
     }
     case 4:{//OS操作系统
         break;
