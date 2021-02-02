@@ -205,61 +205,63 @@ void AnalysisPac::DataAnalyse()
         testList<<"true";
     }
     //遥控指令检测模式
-    if(detectFlag)
-    {
-        //指令
-        QString command = cStringList.at(0).mid(6,4);
-        QString rule;
-        QStringList ruleList;
-        int index;
-        //匹配直接指令回传、间接指令回传
-        if(count>0 && (hexList.at(697).toString()==command || hexList.at(698).toString()== command))
-        {
-            //获取卫星标准状态
-            for(int i = 2; i<cStringList.size();i++)
-            {
-                rule = cStringList.at(i);
-                ruleList = rule.split(" ");
-                index = numMap.find(ruleList.at(0)).value();
-                //标志
-                if(ruleList.size()==3)
-                {
-                    if(hexList.at(index).toString()==ruleList.at(2))
-                    {
-                        resultList[index] = "true";
-                        testList[index] = "true";
-                    }
-                    else
-                    {
-                        resultList[index] = "false";
-                        testList[index] = "false";
-                    }
-                }
-                else    //阈值
-                {
-                    float tmp = valueList.at(index).toString().toFloat();
-                    if(tmp>=ruleList.at(2).toFloat() && tmp<=ruleList.at(3).toFloat())
-                    {
-                        resultList[index] = "true";
-                        testList[index] = "true";
-                    }
-                    else
-                    {
-                        resultList[index] = "false";
-                        testList[index] = "false";
-                    }
-                }
-            }
-            //反馈当前指令的检测结果
-            emit DetectisOver(command, testList);
-        }
-        //反馈指令未匹配
-        if(count == 0)
-        {
-            emit CommandnotFind(command);
-        }
-        count--;
-    }
+//    if(detectFlag)
+//    {
+//        //指令
+//        QString command = cStringList.at(0).mid(6,4);
+//        QString rule;
+//        QStringList ruleList;
+//        int index;
+//        //匹配直接指令回传、间接指令回传
+//        if(count>0 && (hexList.at(697).toString()==command || hexList.at(698).toString()== command))
+//        {
+//            //获取卫星标准状态
+//            for(int i = 2; i<cStringList.size();i++)
+//            {
+//                rule = cStringList.at(i);
+//                ruleList = rule.split(" ");
+//                index = numMap.find(ruleList.at(0)).value();
+//                //标志
+//                if(ruleList.size()==3)
+//                {
+//                    if(hexList.at(index).toString()==ruleList.at(2))
+//                    {
+//                        resultList[index] = "true";
+//                        testList[index] = "true";
+//                    }
+//                    else
+//                    {
+//                        resultList[index] = "false";
+//                        testList[index] = "false";
+//                    }
+//                }
+//                else    //阈值
+//                {
+//                    float tmp = valueList.at(index).toString().toFloat();
+//                    if(tmp>=ruleList.at(2).toFloat() && tmp<=ruleList.at(3).toFloat())
+//                    {
+//                        resultList[index] = "true";
+//                        testList[index] = "true";
+//                    }
+//                    else
+//                    {
+//                        resultList[index] = "false";
+//                        testList[index] = "false";
+//                    }
+//                }
+//            }
+//            //反馈当前指令的检测结果
+//            emit DetectisOver(command, testList);
+//        }
+//        //反馈指令未匹配
+//        if(count == 0)
+//        {
+//            emit CommandnotFind(command);
+//        }
+//        count--;
+//    }
+
+
     //将数据源包的解析结果和检测结果传出
 //    emit Send2Display(sysName,valueList,hexList,resultList);
 
@@ -314,6 +316,28 @@ void AnalysisPac::DataAnalyse()
     QVariant map2Display;
     map2Display.setValue(displayMap);
     emit Send2Display(map2Display,resultList);
+
+    if(detectFlag)
+    {
+        //指令
+        QString command = cStringList.at(0).mid(6,4);
+        if(displayMap.value("TM-RCES-44").at(1)==command || displayMap.value("TM-RCES-45").at(1)==command)
+        {
+            QStringList testList;
+            QString st;
+            for(int i=2;i<cStringList.size();i++)
+            {
+                st = cStringList.at(i)+ " " + displayMap.value(cStringList.at(i)).at(1) + " " +displayMap.value(cStringList.at(i)).at(2);
+                testList << st;
+            }
+            emit DetectisOver(command, testList);
+        }
+        if(count == 0)
+        {
+            emit CommandnotFind(command);
+        }
+        count--;
+    }
 
 }
 

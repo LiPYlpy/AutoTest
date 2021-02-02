@@ -232,6 +232,7 @@ void SerialForm::TxtRecv(QStringList lineStr)
         command<<lineStr.at(i);
     }
     cQueue.enqueue(command);
+    qDebug()<<"command Queue"<<cQueue;
     SendCommand();
 }
 

@@ -113,11 +113,11 @@ RCForm::RCForm(QWidget *parent) :
 
     //读取指令的配置文件
     QString jsonName = "TClib.json";
-    connect(ui->btnSearch,&QPushButton::clicked,[=](){
-        OpenOrderFile(jsonName);
-    });
+//    connect(ui->btnSearch,&QPushButton::clicked,[=](){
+//        OpenOrderFile(jsonName);
+//    });
 
-
+    OpenOrderFile(jsonName);
 
 
     connect(ui->btnOpenTxt,&QPushButton::clicked,[=](){
@@ -204,7 +204,7 @@ RCForm::RCForm(QWidget *parent) :
     //顺序发送按钮
     connect(ui->btnOrderSend,&QPushButton::clicked,[=](){
         BuildCommandList();
-//        emit TxtSend(commandList);
+        emit TxtSend(commandList);
         qDebug()<<commandList;
         for(int i=0;i<commandList.size();i++)
             ui->showTextEdit->append(commandList.at(i));
@@ -270,33 +270,40 @@ void RCForm::DisplayDetectResult(QString command, QStringList resultList)
     {
         ui->textBrowser->append("///////////////");
     }
-    else if(resultList.size()==2) //未匹配
-    {
-        ui->textBrowser->append(command);
-        index = resultList.at(0) + resultList.at(1);
-        ui->textBrowser->append(index);
-    }
+//    else if(resultList.size()==2) //未匹配
+//    {
+//        ui->textBrowser->append(command);
+//        index = resultList.at(0) + resultList.at(1);
+//        ui->textBrowser->append(index);
+//    }
+//    else
+//    {
+//        ui->textBrowser->append(command);
+//        ui->textBrowser->append("Result:");
+//        for (int i = 0; i<resultList.size(); i++ ) {
+//            if(resultList.at(i)=="false")  //检测到错误
+//            {
+//                flag = false;
+////                index = nameMap.find(i).value();
+////                index = index + " : error occurred;";
+////                ui->textBrowser->append(index);
+//                ui->textBrowser->append("error occurred!");
+//            }
+//        }
+//        if(flag)   //未检测到错误
+//        {
+//            ui->textBrowser->append("No error!");
+//            ui->textBrowser->append(" ");
+//        }
+//        else
+//             ui->textBrowser->append(" ");
+//    }
     else
     {
         ui->textBrowser->append(command);
         ui->textBrowser->append("Result:");
-        for (int i = 0; i<resultList.size(); i++ ) {
-            if(resultList.at(i)=="false")  //检测到错误
-            {
-                flag = false;
-//                index = nameMap.find(i).value();
-//                index = index + " : error occurred;";
-//                ui->textBrowser->append(index);
-                ui->textBrowser->append("error occurred!");
-            }
-        }
-        if(flag)   //未检测到错误
-        {
-            ui->textBrowser->append("No error!");
-            ui->textBrowser->append(" ");
-        }
-        else
-             ui->textBrowser->append(" ");
+        for(int i = 0;i<resultList.size();i++)
+            ui->textBrowser->append(resultList.at(i));
     }
 
 }
