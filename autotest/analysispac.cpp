@@ -325,9 +325,34 @@ void AnalysisPac::DataAnalyse()
         {
             QStringList testList;
             QString st;
+            QStringList tmp;
+            QString temp;
+            testList<<"Result:";
             for(int i=2;i<cStringList.size();i++)
             {
-                st = cStringList.at(i)+ " " + displayMap.value(cStringList.at(i)).at(1) + " " +displayMap.value(cStringList.at(i)).at(2);
+                tmp = cStringList.at(i).split(" ");
+                temp = tmp.at(0);
+                st = temp + " " + displayMap.value(temp).at(1) + " " +displayMap.value(temp).at(2);
+                if(tmp.at(1)=="0")
+                {
+                    if(tmp.at(2)==displayMap.value(temp).at(1))
+                        st = st + "NO ERROR!!!";
+                    else
+                    {
+                        st = st + "ERROR OCCURRED!!!";
+                    }
+                }
+                if(tmp.at(1)=="1")
+                {
+                    float val,sd0,sd1;
+                    val = displayMap.value(temp).at(2).toFloat();
+                    sd0 = tmp.at(2).toFloat();
+                    sd1 = tmp.at(3).toFloat();
+                    if(val>=sd0 && val<=sd1)
+                        st = st + "NO ERROR!!!";
+                    else
+                        st = st + "ERROR OCCURRED!!!";
+                }
                 testList << st;
             }
             emit DetectisOver(command, testList);

@@ -330,6 +330,7 @@ void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList
         for (int j=0;j<sysNumList.size() ; j++ ) {
             hexList<<displayMap.value(sysNumList.at(j)).at(1);
             valueList<<displayMap.value(sysNumList.at(j)).at(2);
+//            flagList<<displayMap.value(sysNumList.at(j)).at(2)
         }
         switch (tableName.toInt()) {
         case 19:
