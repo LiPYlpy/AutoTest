@@ -81,6 +81,8 @@ public:
 
     void OpenJson(QString jsonName);
 
+    void OpenRuleJson(QString jsonName);
+
     //SLOT
 
     void buildMap();

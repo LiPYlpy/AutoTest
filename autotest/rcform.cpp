@@ -171,18 +171,21 @@ RCForm::RCForm(QWidget *parent) :
                     qDebug()<<tr("解析json文件错误！");
                     return;
                 }
-                QJsonObject jsonObject = document.object();
-//                qDebug()<<jsonObject;
-                foreach(QString i, jsonObject.keys())
+                else
                 {
-                    QJsonArray array = jsonObject.value(i).toArray();
-                    for (int j = 0;j<array.size() ;j++ ) {
-                        QJsonObject orderItem = array.at(j).toObject();
-                        QString orderName = orderItem.value("name").toString();
-                        QString order = orderItem.value("order").toString();
-                        QString orderDelay = orderItem.value("delay").toString();
-                        QJsonObject target = orderItem.value("target").toObject();
-                        qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+                    QJsonObject jsonObject = document.object();
+                    //                qDebug()<<jsonObject;
+                    foreach(QString i, jsonObject.keys())
+                    {
+                        QJsonArray array = jsonObject.value(i).toArray();
+                        for (int j = 0;j<array.size() ;j++ ) {
+                            QJsonObject orderItem = array.at(j).toObject();
+                            QString orderName = orderItem.value("name").toString();
+                            QString order = orderItem.value("order").toString();
+                            QString orderDelay = orderItem.value("delay").toString();
+                            QJsonObject target = orderItem.value("target").toObject();
+                            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+                        }
                     }
                 }
             }
@@ -265,7 +268,7 @@ QByteArray RCForm::QString2QByteArray(QString str)
 void RCForm::DisplayDetectResult(QString command, QStringList resultList)
 {
     QString index;
-    bool flag = true; //是否有错误标志
+//    bool flag = true; //是否有错误标志
     if(resultList.size()==1) //检测结束
     {
         ui->textBrowser->append("///////////////");
@@ -1227,6 +1230,9 @@ void RCForm::OpenOrderFile(QString fileName)
         qDebug()<<tr("解析json文件错误！");
         return;
     }
+
+    /****************************************************************************************************************************/
+
     QJsonObject jsonObject = document.object();
     foreach(QString i, jsonObject.keys())
     {
@@ -1237,6 +1243,7 @@ void RCForm::OpenOrderFile(QString fileName)
         orderList<<obj.value(QStringLiteral("order")).toString();
         orderList<<obj.value(QStringLiteral("delay")).toString();
         QJsonObject target = obj.value(QStringLiteral("target")).toObject();
+
         if(target.isEmpty())
         {
             orderList<<" ";
@@ -1246,68 +1253,36 @@ void RCForm::OpenOrderFile(QString fileName)
             QString sdStatus;
             foreach(QString k, target.keys())
             {
-                QJsonObject targetItem = target.value(k).toObject();
                 sdStatus.clear();
-                if(targetItem.value("attribute").toString() == "0")
+                QJsonObject targetItem = target.value(k).toObject();
+                if(targetItem.value(QStringLiteral("attribute")).toString() == "0")
                 {
-                    sdStatus = k + " " + "0" + " " + targetItem.value("content").toString();
+                    sdStatus = k + " " + "0" + " " + targetItem.value(QStringLiteral("content")).toString();
                     orderList<<sdStatus;
                     continue;
                 }
-                if(targetItem.value("attribute").toString() == "1")
+                if(targetItem.value(QStringLiteral("attribute")).toString() == "1")
                 {
-                    QString tmp = targetItem.value("content").toString();
+                    QString tmp = targetItem.value(QStringLiteral("content")).toString();
                     QStringList temp = tmp.split("-");
-                    sdStatus = k + " " + "1" + " " + temp.at(0) + " " + temp.at(1);
+                    if(temp.length()==2)
+                    {
+                        sdStatus = k + " " + "1" + " " + temp.at(0) + " " + temp.at(1);
+                    }
+                    else
+                    {
+                        sdStatus = " ";
+                    }
                     orderList<<sdStatus;
                     continue;
                 }
             }
         }
+
         orderContentMap.insert(i,orderList);
-
-
-
-//        QJsonArray array = jsonObject.value(i).toArray();
-//        QStringList nameList;
-//        QStringList orderList;
-//        for (int j = 0;j<array.size() ;j++ ) {
-//            QJsonObject orderItem = array.at(j).toObject();
-//            QString orderName = orderItem.value("name").toString();
-//            nameList<<orderName;
-//            orderList.clear();
-//            QString order = orderItem.value("order").toString();
-//            orderList<<order;
-//            QString orderDelay = orderItem.value("delay").toString();
-//            orderList<<orderDelay;
-//            QJsonObject target = orderItem.value("target").toObject();
-////            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
-//            QString sdStatus;
-//            foreach(QString k,target.keys())
-//            {
-//                QJsonObject targetItem = target.value(k).toObject();
-//                sdStatus.clear();
-//                if(targetItem.value("attribute").toString() == "0")
-//                {
-//                    sdStatus = k +" "+"0"+" "+targetItem.value("content").toString();
-//                    orderList<<sdStatus;
-//                    continue;
-//                }
-//                if(targetItem.value("attribute").toString() == "1")
-//                {
-//                    QString tmp = targetItem.value("content").toString();
-//                    QStringList temp = tmp.split("-");
-//                    sdStatus = k + " " + "1" + " " + temp.at(0) + " " + temp.at(1);
-//                    orderList<<sdStatus;
-//                    continue;
-//                }
-//            }
-//            orderContentMap.insert(orderName,orderList);
-//        }
-//        sysOrderNameMap.insert(i,nameList);
     }
-//    qDebug()<<sysOrderNameMap;
-    qDebug()<<orderContentMap;
+
+    /*******************************************************************************************************************************************/
 }
 
 void RCForm::BuildCommandList()

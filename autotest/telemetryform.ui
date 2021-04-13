@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
+    <width>910</width>
     <height>618</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="0" column="0" rowspan="2">
     <widget class="QDockWidget" name="dockWidget">
      <property name="maximumSize">
       <size>
@@ -40,7 +40,21 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="1" column="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>故障信息</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="errorText"/>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1" rowspan="2">
     <widget class="QTabWidget" name="tabWidgetDisplay">
      <property name="currentIndex">
       <number>0</number>

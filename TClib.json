@@ -362,7 +362,7 @@
 "K611":{"type":"1","name":"复位DSP2","order":"4AEC","delay":"6","target":{"TM-RCES-105":{"attribute":"1","content":"3-3.5"}}},
 "K615":{"type":"1","name":"关闭看门狗","order":"4B63","delay":"6","target":{"TM-RCES-17":{"attribute":"0","content":"0"}}},
 "K616":{"type":"1","name":"打开看门狗","order":"4B90","delay":"6","target":{"TM-RCES-17":{"attribute":"0","content":"1"}}},
-"K618":{"type":"1","name":"打开转接板FPGA及载荷电源采样","order":"4BDD","delay":"6","target":{"TM-REPS-92":{"attribute":"1","content":"00"}}},
+"K618":{"type":"1","name":"打开转接板FPGA及载荷电源采样","order":"4BDD","delay":"6","target":{"TM-REPS-92":{"attribute":"1","content":"0-0"}}},
 "K619":{"type":"1","name":"关闭转接板FPGA及载荷电源采样","order":"4BFA","delay":"6","target":{"TM-REPS-92":{"attribute":"1","content":"0.5-1.6"}}},
 "K620":{"type":"1","name":"允许FPGA切换DSP","order":"4C01","delay":"6","target":{"TM-RCES-18":{"attribute":"0","content":"0"}}},
 "K621":{"type":"1","name":"禁止FPGA切换DSP","order":"4C26","delay":"6","target":{"TM-RCES-18":{"attribute":"0","content":"1"}}},

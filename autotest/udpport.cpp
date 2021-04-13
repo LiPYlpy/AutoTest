@@ -9,7 +9,7 @@ UDPPort::UDPPort(QObject *parent) : QObject(parent)
 
 UDPPort::~UDPPort()
 {
-    delete udpSocket;
+//    delete udpSocket;
     qDebug()<<"析构 UDPPort";
 }
 

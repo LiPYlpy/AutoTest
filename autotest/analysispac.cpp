@@ -13,8 +13,10 @@ QMap<QString,QStringList> sysMap; //分系统对应的数据编号
 QMap<QString,QStringList> divisionMap;  //各数据编号对应的类型、名、位置
 QMap<QString,QJsonValue> jsonMap;    //各数据编号对应的处理方式
 
+QMap<QString,QJsonValue> ruleMap;
 
 QMap<QString,QStringList> displayMap;
+QMap<QString,QStringList> cacheMap;
 
 QStringList subSysName;        //分系统集合
 
@@ -310,7 +312,192 @@ void AnalysisPac::DataAnalyse()
             }
         }
     }
-    qDebug()<<displayMap.size();
+    qDebug()<<"Size:"<<displayMap.size();
+
+    if(cacheMap.size() == 0){
+        cacheMap = displayMap;
+    }
+    else
+    {
+        //////////////////////////////////// 第0类规则检测
+        QJsonArray array0 = ruleMap.value("0").toArray();
+        QJsonObject obj0;
+        QString name0;
+        for(int i=0;i<array0.size();i++)  //比较hex
+        {
+            obj0 = array0[i].toObject();
+            name0 = obj0.keys().at(0);
+            if(displayMap.value(name0).at(1) == obj0.value(name0).toString())
+            {
+                qDebug()<<name0<<"Yes";
+            }
+            else
+            {
+                qDebug()<<name0<<"No";
+            }
+        }
+        //////////////////////////////////////////////////
+
+
+
+        ////////////////////////////////////// 第1类规则检测
+        QJsonArray array1 = ruleMap.value("1").toArray();
+        QString name1;
+
+        for(int i=0;i<array1.size();i++)
+        {
+            name1 = array1.at(i).toString();
+            if(displayMap.value(name1).at(2).toInt()!=cacheMap.value(name1).at(2).toInt())
+            {
+                qDebug()<<name1<<"No";
+            }
+            else
+            {
+                qDebug()<<name1<<"Yes";
+            }
+        }
+        ///////////////////////////////////////////////////
+
+
+        qDebug()<<"////////////////////////////";
+        qDebug()<<"////////////////////////////";
+
+        ////////////////////////////////////////第2类规则检测
+        QJsonArray array2 = ruleMap.value("2").toArray();
+        QJsonObject obj2;
+        QString name2;
+        for(int i=0;i<array2.size();i++)
+        {
+            obj2 = array2.at(i).toObject();
+            name2 = obj2.keys().at(0);
+            QJsonArray state = obj2.value(name2).toArray();
+            QJsonObject sw0 = state.at(0).toObject();
+            QString sw0Name = sw0.keys().at(0);
+            QJsonObject sw1 = state.at(1).toObject();
+            QString sw1Name = sw1.keys().at(0);
+            if(displayMap.value(name2).at(1)==sw0Name)
+            {
+                QJsonObject sw0Item = sw0.value(sw0Name).toObject();
+                foreach(QString i, sw0Item.keys())
+                {
+                    QString value = sw0Item.value(i).toString();
+                    QStringList small2Big = value.split("-");
+                    if(displayMap.value(i).at(2).toFloat()>=small2Big.at(0).toFloat() && displayMap.value(i).at(2).toFloat()<=small2Big.at(1).toFloat() )
+                    {
+                        qDebug()<<i<<"Yes";
+                    }
+                    else
+                    {
+                        qDebug()<<i<<"No";
+                    }
+                }
+            }
+            if(displayMap.value(name2).at(1)==sw1Name)
+            {
+                QJsonObject sw1Item = sw1.value(sw1Name).toObject();
+                foreach(QString i, sw1Item.keys())
+                {
+                    QString value = sw1Item.value(i).toString();
+                    QStringList small2Big = value.split("-");
+                    if(displayMap.value(i).at(2).toFloat()>=small2Big.at(0).toFloat() && displayMap.value(i).at(2).toFloat()<=small2Big.at(1).toFloat() )
+                    {
+                        qDebug()<<i<<"Yes";
+                    }
+                    else
+                    {
+                        qDebug()<<i<<"No";
+                    }
+                }
+            }
+        }
+        /////////////////////////////////////////////////////
+
+        /////////////////////////////////////////第4类规则检测
+        QJsonObject obj4 = ruleMap.value("4").toObject();
+        if(obj4.contains(QStringLiteral("time")))
+        {
+            ///...///
+        }
+        if(obj4.contains(QStringLiteral("count")))
+        {
+            QJsonArray countArray = obj4.value(QStringLiteral("count")).toArray();
+            for(int i = 0; i < countArray.size(); i++)
+            {
+                QJsonArray compArray = countArray.at(i).toArray();
+                int comp0 = displayMap.value(compArray.at(0).toString()).at(2).toInt();
+                int comp1 = displayMap.value(compArray.at(1).toString()).at(2).toInt();
+                int compValue = abs(comp0-comp1);
+                if(compValue>10)
+                {
+                    qDebug()<<"No";
+                }
+                else
+                {
+                    qDebug()<<"Yes";
+                }
+            }
+        }
+        ///////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////第5类规则检测
+        QJsonArray array5 = ruleMap.value("5").toArray();
+        QString name5;
+        for(int i = 0; i < array5.size(); i++)
+        {
+            name5 = array5.at(i).toString();
+            int cacheValue = cacheMap.value(name5).at(2).toInt();
+            int presentValue = displayMap.value(name5).at(2).toInt();
+            if(cacheValue!=presentValue && presentValue==0)
+            {
+                qDebug()<<name5<<"No";
+            }
+            else
+            {
+                qDebug()<<name5<<"Yes";
+            }
+        }
+        /////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////第6类规则检测
+        QJsonArray array6 = ruleMap.value("6").toArray();
+        QJsonObject obj6;
+        QString name6;
+        QString value6;
+        QStringList s2B;
+        for(int i = 0 ; i<array6.size(); i++)
+        {
+            obj6 = array6.at(i).toObject();
+            name6 = obj6.keys().at(0);
+            value6 = obj6.value(name6).toString();
+            s2B = value6.split("-");
+            if(displayMap.value(name6).at(2).toFloat()>=s2B.at(0).toFloat() && displayMap.value(name6).at(2).toFloat()<=s2B.at(1).toFloat())
+            {
+                qDebug()<<name6<<"Yes";
+            }
+            else
+            {
+                qDebug()<<name6<<"No";
+            }
+        }
+        //////////////////////////////////////////////////////
+
+        /*************************************************************************************************************************************/
+        //控制存储历史数据
+
+        /*************************************************************************************************************************************/
+
+
+        cacheMap = displayMap;
+    }
+
+
+
+
+
+
+
+
 
     qRegisterMetaType<QVariant>("QVariant");
     QVariant map2Display;
@@ -328,6 +515,7 @@ void AnalysisPac::DataAnalyse()
             QStringList tmp;
             QString temp;
             testList<<"Result:";
+
             for(int i=2;i<cStringList.size();i++)
             {
                 tmp = cStringList.at(i).split(" ");
@@ -355,6 +543,7 @@ void AnalysisPac::DataAnalyse()
                 }
                 testList << st;
             }
+
             emit DetectisOver(command, testList);
         }
         if(count == 0)
@@ -499,6 +688,9 @@ PacController::PacController()
     //读取json文件
     QString jsonName = "dataParse_v1.json";
     OpenJson(jsonName);
+
+    QString jsonName1 = "RuleBaselib.json";
+    OpenRuleJson(jsonName1);
 //    qDebug()<<subSysName;
 //    qDebug()<<sysMap;
 //    qDebug()<<divisionMap;
@@ -545,6 +737,8 @@ void PacController::OpenJson(QString jsonName)
         qDebug()<<tr("解析json文件错误！");
         return;
     }
+    else
+    {
     QJsonObject jsonObject = document.object();
 
     QJsonValue configValueList = jsonObject.value(QStringLiteral("config"));
@@ -616,6 +810,60 @@ void PacController::OpenJson(QString jsonName)
                 }
             }
         }
+    }
+    }
+}
+
+void PacController::OpenRuleJson(QString jsonName)
+{
+    QString fileDir = "../"+jsonName;
+    QFile file(fileDir);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString value = file.readAll();
+    file.close();
+
+//    int count = 0;
+    QJsonParseError parseJsonErr;
+    QJsonDocument document = QJsonDocument::fromJson(value.toUtf8(),&parseJsonErr);
+    if(!(parseJsonErr.error == QJsonParseError::NoError))
+    {
+        qDebug()<<tr("解析json文件错误！");
+        return;
+    }
+    else
+    {
+        QJsonObject jsonObj = document.object();
+        if(jsonObj.contains(QStringLiteral("0")))
+        {
+            QJsonValue rule0 = jsonObj.value(QStringLiteral("0"));
+            ruleMap.insert("0",rule0);
+        }
+        if(jsonObj.contains(QStringLiteral("1")))
+        {
+            QJsonValue rule1 = jsonObj.value(QStringLiteral("1"));
+            ruleMap.insert("1",rule1);
+        }
+        if(jsonObj.contains(QStringLiteral("2")))
+        {
+            QJsonValue rule2 = jsonObj.value(QStringLiteral("2"));
+            ruleMap.insert("2",rule2);
+        }
+        if(jsonObj.contains(QStringLiteral("4")))
+        {
+            QJsonValue rule4 = jsonObj.value(QStringLiteral("4"));
+            ruleMap.insert("4",rule4);
+        }
+        if(jsonObj.contains(QStringLiteral("5")))
+        {
+            QJsonValue rule5 = jsonObj.value(QStringLiteral("5"));
+            ruleMap.insert("5",rule5);
+        }
+        if(jsonObj.contains(QStringLiteral("6")))
+        {
+            QJsonValue rule6 = jsonObj.value(QStringLiteral("6"));
+            ruleMap.insert("6",rule6);
+        }
+//        qDebug()<<ruleMap;
     }
 }
 

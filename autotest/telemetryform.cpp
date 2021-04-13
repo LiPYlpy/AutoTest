@@ -251,7 +251,7 @@ TelemetryForm::~TelemetryForm()
     delete R25_tableForm;
     delete R26_tableForm;
     delete R27_tableForm;
-    delete telemetryList;
+//    delete telemetryList;
     delete topItem;
     delete ui;
     qDebug()<<"析构 TelemetryForm";
@@ -321,7 +321,7 @@ QStringList TelemetryForm::GetNameFromMap(QString sysName)
 void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList)
 {
     QMap<QString,QStringList> displayMap = map2Display.value<QMap<QString,QStringList>>();
-    qDebug()<<displayMap;
+    qDebug()<<"显示结果："<<displayMap.size();
     for (int i=0; i<teleSysName.size() ; i++ ) {
         QString tableName = teleSysName.at(i);
         QStringList sysNumList = teleSysMap.value(tableName);
@@ -362,7 +362,43 @@ void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList
         }
     }
 
+
+
+    //检测结果在遥测界面显示
+    ui->errorText->append(resultList.at(0));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //显示遥测数据解析与检测的结构
 //void TelemetryForm::RecvExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList)
