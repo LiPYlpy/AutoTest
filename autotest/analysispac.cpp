@@ -329,11 +329,11 @@ void AnalysisPac::DataAnalyse()
             name0 = obj0.keys().at(0);
             if(displayMap.value(name0).at(1) == obj0.value(name0).toString())
             {
-                qDebug()<<name0<<"Yes";
+//                qDebug()<<name0<<"Yes";
             }
             else
             {
-                qDebug()<<name0<<"No";
+//                qDebug()<<name0<<"No";
             }
         }
         //////////////////////////////////////////////////
@@ -349,11 +349,11 @@ void AnalysisPac::DataAnalyse()
             name1 = array1.at(i).toString();
             if(displayMap.value(name1).at(2).toInt()!=cacheMap.value(name1).at(2).toInt())
             {
-                qDebug()<<name1<<"No";
+//                qDebug()<<name1<<"No";
             }
             else
             {
-                qDebug()<<name1<<"Yes";
+//                qDebug()<<name1<<"Yes";
             }
         }
         ///////////////////////////////////////////////////
@@ -384,11 +384,11 @@ void AnalysisPac::DataAnalyse()
                     QStringList small2Big = value.split("-");
                     if(displayMap.value(i).at(2).toFloat()>=small2Big.at(0).toFloat() && displayMap.value(i).at(2).toFloat()<=small2Big.at(1).toFloat() )
                     {
-                        qDebug()<<i<<"Yes";
+//                        qDebug()<<i<<"Yes";
                     }
                     else
                     {
-                        qDebug()<<i<<"No";
+//                        qDebug()<<i<<"No";
                     }
                 }
             }
@@ -401,11 +401,11 @@ void AnalysisPac::DataAnalyse()
                     QStringList small2Big = value.split("-");
                     if(displayMap.value(i).at(2).toFloat()>=small2Big.at(0).toFloat() && displayMap.value(i).at(2).toFloat()<=small2Big.at(1).toFloat() )
                     {
-                        qDebug()<<i<<"Yes";
+//                        qDebug()<<i<<"Yes";
                     }
                     else
                     {
-                        qDebug()<<i<<"No";
+//                        qDebug()<<i<<"No";
                     }
                 }
             }
@@ -429,11 +429,11 @@ void AnalysisPac::DataAnalyse()
                 int compValue = abs(comp0-comp1);
                 if(compValue>10)
                 {
-                    qDebug()<<"No";
+//                    qDebug()<<"No";
                 }
                 else
                 {
-                    qDebug()<<"Yes";
+//                    qDebug()<<"Yes";
                 }
             }
         }
@@ -449,11 +449,11 @@ void AnalysisPac::DataAnalyse()
             int presentValue = displayMap.value(name5).at(2).toInt();
             if(cacheValue!=presentValue && presentValue==0)
             {
-                qDebug()<<name5<<"No";
+//                qDebug()<<name5<<"No";
             }
             else
             {
-                qDebug()<<name5<<"Yes";
+//                qDebug()<<name5<<"Yes";
             }
         }
         /////////////////////////////////////////////////////
@@ -473,11 +473,11 @@ void AnalysisPac::DataAnalyse()
             s2B = value6.split("-");
             if(displayMap.value(name6).at(2).toFloat()>=s2B.at(0).toFloat() && displayMap.value(name6).at(2).toFloat()<=s2B.at(1).toFloat())
             {
-                qDebug()<<name6<<"Yes";
+//                qDebug()<<name6<<"Yes";
             }
             else
             {
-                qDebug()<<name6<<"No";
+//                qDebug()<<name6<<"No";
             }
         }
         //////////////////////////////////////////////////////

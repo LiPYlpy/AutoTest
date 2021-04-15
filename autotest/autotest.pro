@@ -4,6 +4,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT       += serialport
 
+QT       += charts
+
 QT       += network
 
 CONFIG += c++11
@@ -16,9 +18,11 @@ SOURCES += \
     analysisdata.cpp \
     analysispac.cpp \
     dataexplain.cpp \
+    drawform.cpp \
     inittelemetrytable.cpp \
     main.cpp \
     rcform.cpp \
+    rtpainter.cpp \
     serialform.cpp \
     serialport.cpp \
     tableform.cpp \
@@ -31,8 +35,10 @@ HEADERS += \
     analysisdata.h \
     analysispac.h \
     dataexplain.h \
+    drawform.h \
     inittelemetrytable.h \
     rcform.h \
+    rtpainter.h \
     serialform.h \
     serialport.h \
     tableform.h \
@@ -42,6 +48,7 @@ HEADERS += \
     widget.h
 
 FORMS += \
+    drawform.ui \
     rcform.ui \
     serialform.ui \
     tableform.ui \

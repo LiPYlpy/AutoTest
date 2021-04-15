@@ -7,11 +7,21 @@
 #include <QFile>
 #include <QDebug>
 #include <QString>
+#include <QList>
 //#include <QVariantList>
+#include "rtpainter.h"
+
+QMap<QString,QStringList> recDisplayMap; //接受的解析数据
 
 QMap<QString,QStringList> teleSysMap; //分系统对应的数据编号
 QMap<QString,QString> findNameMap;    //数据编号对应的解析（此处只使用数据名）
 QStringList teleSysName;     //分系统名，表名 数字
+
+bool drawPicFlag = false;
+//int openPicNum = 0;
+QStringList chosenList; //选择绘图的波道号
+//QList<DrawForm *> picList;
+//QList<QStringList> picNameList;
 
 TelemetryForm::TelemetryForm(QWidget *parent) :
     QWidget(parent),
@@ -47,6 +57,91 @@ TelemetryForm::TelemetryForm(QWidget *parent) :
     ui->tabWidgetDisplay->removeTab(0);
     ui->tabWidgetDisplay->clear();
     ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+    /*******************************************************************************************/
+    /*******************************************************************************************/
+    //绘图ui设置
+
+    QString tmpSysName;
+    QStringList comboBoxNameList;
+    comboBoxNameList<<" ";
+    for (int i = 0; i<teleSysName.length(); i++) {
+        tmpSysName = teleSysName.at(i);
+        comboBoxNameList << teleSysMap.value(tmpSysName);
+    }
+
+    QCompleter * findName1 = new QCompleter(comboBoxNameList);
+    QCompleter * findName2 = new QCompleter(comboBoxNameList);
+    QCompleter * findName3 = new QCompleter(comboBoxNameList);
+    QCompleter * findName4 = new QCompleter(comboBoxNameList);
+    QCompleter * findName5 = new QCompleter(comboBoxNameList);
+
+    findName1->setCaseSensitivity(Qt::CaseInsensitive);
+    findName2->setCaseSensitivity(Qt::CaseInsensitive);
+    findName3->setCaseSensitivity(Qt::CaseInsensitive);
+    findName4->setCaseSensitivity(Qt::CaseInsensitive);
+    findName5->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->comboBox_1->addItems(comboBoxNameList);
+    ui->comboBox_2->addItems(comboBoxNameList);
+    ui->comboBox_3->addItems(comboBoxNameList);
+    ui->comboBox_4->addItems(comboBoxNameList);
+    ui->comboBox_5->addItems(comboBoxNameList);
+
+    ui->comboBox_1->setEditable(true);
+    ui->comboBox_2->setEditable(true);
+    ui->comboBox_3->setEditable(true);
+    ui->comboBox_4->setEditable(true);
+    ui->comboBox_5->setEditable(true);
+
+    ui->comboBox_1->setCompleter(findName1);
+    ui->comboBox_2->setCompleter(findName2);
+    ui->comboBox_3->setCompleter(findName3);
+    ui->comboBox_4->setCompleter(findName4);
+    ui->comboBox_5->setCompleter(findName5);
+
+//    //开唯一窗口
+//    curvePic = new DrawForm;
+//    connect(this,&TelemetryForm::Send2Plot,curvePic,&DrawForm::updata_plot);
+
+
+
+    connect(ui->drawBtn,&QPushButton::clicked,[=](){
+//       qDebug()<<ui->comboBox_1->currentText();
+//       qDebug()<<ui->comboBox_2->currentText();
+//       qDebug()<<ui->comboBox_3->currentText();
+//       qDebug()<<ui->comboBox_4->currentText();
+//       qDebug()<<ui->comboBox_5->currentText();
+//       QStringList chosenList;
+       chosenList.clear();
+       chosenList<<ui->comboBox_1->currentText();
+       chosenList<<ui->comboBox_2->currentText();
+       chosenList<<ui->comboBox_3->currentText();
+       chosenList<<ui->comboBox_4->currentText();
+       chosenList<<ui->comboBox_5->currentText();
+       qDebug()<<chosenList;
+       //可以开多个窗口，但是内容会相同
+       DrawForm *curvePic = new DrawForm;
+       connect(this,&TelemetryForm::Send2Plot,curvePic,&DrawForm::updata_plot);
+
+//       picList<<curvePic;
+//       picNameList<<chosenList;
+
+       drawPicFlag = true;
+//       StartDrawPic(curvePic,chosenList);
+       curvePic->show();
+//       RTPainter * Ppainter;
+//       QList<QPointF> data;
+//       data<<QPointF(0,0)<<QPointF(1.2,2.4)<<QPointF(2.4,4.8);
+//       Ppainter->addSeries(data);
+    });
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+//    connect(this,&TelemetryForm::Send2Plot,curvePic,&DrawForm::updata_plot);
 
 
     /*******************************************************************************************/
@@ -220,6 +315,10 @@ TelemetryForm::TelemetryForm(QWidget *parent) :
     });
 
 
+
+
+
+
 }
 
 TelemetryForm::~TelemetryForm()
@@ -320,16 +419,16 @@ QStringList TelemetryForm::GetNameFromMap(QString sysName)
 
 void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList)
 {
-    QMap<QString,QStringList> displayMap = map2Display.value<QMap<QString,QStringList>>();
-    qDebug()<<"显示结果："<<displayMap.size();
+    recDisplayMap = map2Display.value<QMap<QString,QStringList>>();
+    qDebug()<<"显示结果："<<recDisplayMap.size();
     for (int i=0; i<teleSysName.size() ; i++ ) {
         QString tableName = teleSysName.at(i);
         QStringList sysNumList = teleSysMap.value(tableName);
         QVariantList valueList;
         QVariantList hexList;
         for (int j=0;j<sysNumList.size() ; j++ ) {
-            hexList<<displayMap.value(sysNumList.at(j)).at(1);
-            valueList<<displayMap.value(sysNumList.at(j)).at(2);
+            hexList<<recDisplayMap.value(sysNumList.at(j)).at(1);
+            valueList<<recDisplayMap.value(sysNumList.at(j)).at(2);
 //            flagList<<displayMap.value(sysNumList.at(j)).at(2)
         }
         switch (tableName.toInt()) {
@@ -362,11 +461,31 @@ void TelemetryForm::RecvExplainInfo(QVariant map2Display, QStringList resultList
         }
     }
 
+    if(drawPicFlag)
+    {
+        QList<float> chosenValueF;
+        QString tmpValue;
 
+        for(int i = 0; i<chosenList.size(); i++)
+        {
+            if(recDisplayMap.contains(chosenList.at(i)))
+                tmpValue = recDisplayMap.value(chosenList.at(i)).at(2);
+            else
+                tmpValue = "10.0";
+            chosenValueF<<tmpValue.toFloat();
+        }
+        emit Send2Plot(chosenValueF, chosenList);
+    }
 
     //检测结果在遥测界面显示
     ui->errorText->append(resultList.at(0));
 }
+
+void TelemetryForm::StartDrawPic(DrawForm *plotForm, QStringList chosenList)
+{
+
+}
+
 
 
 

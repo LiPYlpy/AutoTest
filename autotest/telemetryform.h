@@ -8,7 +8,7 @@
 #include "inittelemetrytable.h"
 #include <QMap>
 #include <QVariant>
-
+#include "drawform.h"
 
 
 namespace Ui {
@@ -33,9 +33,11 @@ public:
 
     void RecvExplainInfo(QVariant map2Display,QStringList resultList);
 
-
+    void StartDrawPic(DrawForm * plotForm, QStringList chosenList);
 
 signals:
+
+    void Send2Plot(QList<float> chosenValueF, QStringList chosenList);
 
     void R1_Display(QVariantList valueList, QVariantList hexList, QStringList resultList);
     void R2_Display(QVariantList valueList, QVariantList hexList, QStringList resultList);
@@ -101,6 +103,8 @@ private:
     TableForm * R25_tableForm;
     TableForm * R26_tableForm;
     TableForm * R27_tableForm;
+
+    DrawForm * curvePic;
 };
 
 
