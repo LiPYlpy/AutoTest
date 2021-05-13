@@ -7,7 +7,7 @@
 #include <QQueue>
 
 QQueue<QStringList> cQueue;
-
+QMap<QString,QStringList> storeMap;
 
 SerialForm::SerialForm(QWidget *parent) :
     QWidget(parent),
@@ -183,7 +183,7 @@ SerialForm::SerialForm(QWidget *parent) :
     //收到解析
     connect(pacController,&PacController::SendExplainInfo,this,&SerialForm::RecvExplainInfo);
 
-
+    connect(pacController,&PacController::SendStatePerPac,this,&SerialForm::RecvStatePerPac);
 
 }
 
@@ -254,10 +254,26 @@ void SerialForm::SendCommand()
         QString sendCommand = command.at(0);
         QByteArray sendT = HexQString2QByteArray(sendCommand);
         emit SendStandardState(command);
+        QStringList startTest;
+        startTest << sendCommand;
+//        QString eachCommand;
+        for(int i = 2; i<command.size();i++)
+        {
+            QString standardState = command.at(i);
+            QStringList searchNameList = standardState.split(" ");
+            QString searchName = searchNameList.at(0);
+//            eachCommand.clear();
+            startTest << searchName << storeMap.value(searchName);
+        }
+        emit SendBeforeCommand(startTest);
+
+
+
         if(serialState)
             emit SendByteArray(sendT);
         if(UdpState)
             emit SendByUdp(sendT);
+
     }
     else
     {
@@ -287,7 +303,13 @@ void SerialForm::DetectFailed(QString command)
 
 void SerialForm::RecvExplainInfo(QVariant map2Display,QStringList resultList)
 {
+    storeMap = map2Display.value<QMap<QString,QStringList>>();
     emit SendExplainInfo(map2Display, resultList);
+}
+
+void SerialForm::RecvStatePerPac(QVariant map2Display)
+{
+    emit SendStatePerPac(map2Display);
 }
 
 

@@ -44,6 +44,8 @@ signals:
 
     void CommandnotFind(QString command);
 
+    void Send2RCForm(QVariant map2Display);
+
 private:
     QMutex pacMutex;
 
@@ -102,6 +104,7 @@ public:
 
     void GetExplainInfo(QVariant map2Display,QStringList resultList);
 
+    void GetStatePerPac(QVariant map2Display);
 
 signals:
 
@@ -118,7 +121,7 @@ signals:
 
     void SendExplainInfo(QVariant map2Display,QStringList resultList);
 
-
+    void SendStatePerPac(QVariant map2Display);
 
 private:
     QMutex controllerMutex;

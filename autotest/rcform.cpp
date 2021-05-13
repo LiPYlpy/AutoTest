@@ -7,6 +7,9 @@
 #include <QJsonObject>
 #include <QFile>
 
+
+bool drawFlag = false;
+
 //QMap<int,QString> nameMap;
 
 //<分系统名，指令名List>
@@ -15,6 +18,11 @@ QMap<QString,QStringList> sysOrderNameMap;
 //<指令名，规定格式指令内容（指令类型，指令，延时，对应标准状态）>
 QMap<QString,QStringList> orderContentMap;
 
+//将commandList封装为map，指令内容为key。其他数值为value
+QMap<QString,QStringList> indexTCMap;
+
+//显示Map的备份
+QMap<QString,QStringList> recvMap;
 
 RCForm::RCForm(QWidget *parent) :
     QWidget(parent),
@@ -184,7 +192,7 @@ RCForm::RCForm(QWidget *parent) :
                             QString order = orderItem.value("order").toString();
                             QString orderDelay = orderItem.value("delay").toString();
                             QJsonObject target = orderItem.value("target").toObject();
-                            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
+//                            qDebug()<<orderName<<"\n"<<order<<"\n"<<orderDelay<<"\n"<<target;
                         }
                     }
                 }
@@ -207,8 +215,9 @@ RCForm::RCForm(QWidget *parent) :
     //顺序发送按钮
     connect(ui->btnOrderSend,&QPushButton::clicked,[=](){
         BuildCommandList();
+//        qDebug()<<"NOW"<<commandList;
         emit TxtSend(commandList);
-        qDebug()<<commandList;
+//        qDebug()<<"commandList:"<<commandList;
         for(int i=0;i<commandList.size();i++)
             ui->showTextEdit->append(commandList.at(i));
         ui->hisTextBrowser->append("发送成功");
@@ -226,8 +235,18 @@ RCForm::RCForm(QWidget *parent) :
         ui->hisTextBrowser->append("发送成功");
     });
 
+    //绘图按钮
+    connect(ui->drawBtn,&QPushButton::clicked,[=](){
+        DrawForm *curvePic = new DrawForm;
+        connect(this,&RCForm::Send2Plot,curvePic,&DrawForm::updata_plot);
+        connect(this,&RCForm::cleanPic,curvePic,&DrawForm::clearCurve);
+        drawFlag = true;
+        curvePic->show();
+    });
+
 //    //建立序号和波道名的Map
 //    BuildMap();
+
 }
 
 RCForm::~RCForm()
@@ -1278,7 +1297,7 @@ void RCForm::OpenOrderFile(QString fileName)
                 }
             }
         }
-
+//        qDebug()<<"orderList:"<<orderList;
         orderContentMap.insert(i,orderList);
     }
 
@@ -1298,14 +1317,14 @@ void RCForm::BuildCommandList()
     case -1:{
         for (int i=0; i<diyList.size();i++ ) {
             commandList<<"######";
-            qDebug()<<diyList;
+//            qDebug()<<diyList;
             if(!orderContentMap.contains(diyList.at(i)))
             {
                 //需要设置不存在该指令的提示，在后续发送之中也要处理这个特殊情况
                 continue;
             }
             cList = orderContentMap.value(diyList.at(i));
-            qDebug()<<cList;
+//            qDebug()<<cList;
             if(cList.at(0)=="0")
             {
                 head = dOrderHead;
@@ -1323,7 +1342,9 @@ void RCForm::BuildCommandList()
             for (int j=4;j<cList.size();j++) {
                 commandList<<cList.at(j);
             }
+            commandList<<diyList.at(i);//将指令编号写进commandList
         }
+
         break;
     }
     case 0:{//DTTC测控系统应答机
@@ -1396,4 +1417,121 @@ void RCForm::BuildCommandList()
     }
     default:break;
     }
+
+    QString tempKey;
+    QStringList tempValue;
+    for(int i = 0;i<commandList.size();i++)
+    {
+
+        if(commandList.at(i)=="######")
+        {
+            if(!tempKey.isNull()){
+                indexTCMap.insert(tempKey,tempValue);
+                tempValue.clear();
+            }
+            tempKey = commandList.at(i+1);
+            continue;
+        }
+        tempValue<<commandList.at(i);
+    }
+    if(!tempKey.isNull()){
+        indexTCMap.insert(tempKey,tempValue);
+        tempValue.clear();
+    }
+//    qDebug()<<"indexTCMap"<<indexTCMap;
+}
+
+void RCForm::RecvBeforeTest(QStringList startTest)
+{
+    storeStateList = startTest;
+    qDebug()<<"startTest"<<startTest;
+    qDebug()<<"storeStateList"<<storeStateList;
+    drawList.clear();
+//    qDebug()<<"??????"<<storeStateList;
+    //?????? ("4EF94EF94EF9", "TM-RCES-29", "姿控软件运行准禁标志", "1", "允许")
+
+    tclibinf  = indexTCMap.value(storeStateList.at(0));
+//    qDebug()<<"tclibinf"<<tclibinf;
+
+    tcnum = tclibinf.at(tclibinf.size()-1);//指令编号
+    tcname = orderContentMap.value(tcnum).at(1);//指令名称
+
+    QString tcinf = "";
+
+    tcinf+="当前测试指令为：" + tcnum+","+tcname +"。\n";
+    tcinf+="指令执行前：\n";
+    for (int i = 1;i<storeStateList.size()-4;i+=4 )
+    {
+        tcinf+=storeStateList.at(i)+" "+storeStateList.at(i+1)
+                +"为:\t"+storeStateList.at(i+3)+"。\n";
+    }
+//    tcinf += "\n目标状态为：";
+
+    ui->tcinf_textBrowser->setText(tcinf);
+
+//    drawList
+    for (int i = 1;i<storeStateList.size()-4;i+=4 )
+    {
+        drawList<<storeStateList.at(i);
+    }
+
+    qDebug()<<"DrawList"<<drawList;
+    while(drawList.size()<5)
+    {
+        drawList<<" ";
+    }
+
+    if(drawFlag)
+    {
+        emit cleanPic();
+        QList<float> chosenValueF;
+        QString tmpValue;
+
+        qDebug()<<"drawList"<<drawList;
+        for(int i = 0; i<drawList.size(); i++)
+        {
+            if(recvMap.contains(drawList.at(i)))
+                tmpValue = recvMap.value(drawList.at(i)).at(2);
+            else
+                tmpValue = "10.0";
+            chosenValueF<<tmpValue.toFloat();
+        }
+        qDebug()<<"#########"<<chosenValueF;
+        emit Send2Plot(chosenValueF, drawList);
+    }
+}
+
+void RCForm::RecvStatePerPac(QVariant map2Display)
+{
+    recvMap = map2Display.value<QMap<QString,QStringList>>();
+    qDebug()<<"!!!!!!!!!!!!"<<recvMap.size();
+
+    QString tcrun ="";
+    tcrun += "当前状态：\n";
+    for (int i = 1;i<storeStateList.size()-4;i+=4 )
+    {
+        tcrun += storeStateList.at(i)+" \n"+storeStateList.at(i+1) + "实时状态为:    ";
+        tcrun += recvMap.value(storeStateList.at(i)).at(2) +"。\n";
+    }
+
+    ui->tcrun_textBrowser->append(tcrun);
+
+    if(drawFlag)
+    {
+        QList<float> chosenValueF;
+        QString tmpValue;
+
+        qDebug()<<"drawList"<<drawList;
+        for(int i = 0; i<drawList.size(); i++)
+        {
+            if(recvMap.contains(drawList.at(i)))
+                tmpValue = recvMap.value(drawList.at(i)).at(2);
+            else
+                tmpValue = "10.0";
+            chosenValueF<<tmpValue.toFloat();
+        }
+        qDebug()<<">>>>>>>>>>>"<<chosenValueF;
+        emit Send2Plot(chosenValueF, drawList);
+    }
+
 }

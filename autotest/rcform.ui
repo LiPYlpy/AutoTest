@@ -17,6 +17,23 @@
    <item row="0" column="1">
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>检测显示</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="tcinf_textBrowser"/>
+     </item>
+     <item>
+      <widget class="QTextBrowser" name="tcrun_textBrowser"/>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="2" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
         <string>数据发送历史记录</string>
@@ -26,10 +43,6 @@
      <item>
       <widget class="QTextBrowser" name="hisTextBrowser"/>
      </item>
-    </layout>
-   </item>
-   <item row="0" column="2" rowspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
@@ -188,8 +201,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>485</width>
-            <height>295</height>
+            <width>378</width>
+            <height>318</height>
            </rect>
           </property>
          </widget>
@@ -320,6 +333,13 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="drawBtn">
+     <property name="text">
+      <string>显示图形</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QFileDialog>
 #include <QTextStream>
+#include "drawform.h"
 
 
 namespace Ui {
@@ -28,9 +29,17 @@ public:
 
     void BuildCommandList();
 
+    void RecvBeforeTest(QStringList startTest);
+
+    void RecvStatePerPac(QVariant map2Display);
+
 signals:
 
     void TxtSend(QStringList lineStr);
+
+    void Send2Plot(QList<float> chosenValueF, QStringList chosenList);
+
+    void cleanPic();
 
 private:
     Ui::RCForm *ui;
@@ -40,6 +49,15 @@ private:
     QString dOrderTail;
     QString indOrderHead;
     QString indOrderTail;
+
+    QStringList tclibinf;
+    QString tcnum;
+    QString tcname;
+
+    QStringList storeStateList; //存储检测之前的对应波道的状态
+    QStringList drawList;
+
+    DrawForm * curvePic;
 };
 
 #endif // RCFORM_H

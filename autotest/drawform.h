@@ -19,6 +19,7 @@ public:
     explicit DrawForm(QWidget *parent = nullptr);
     ~DrawForm();
      void updata_plot(QList<float> chosenValueF, QStringList chosenList);
+     void clearCurve();
 private:
      Ui::DrawForm *ui;
 

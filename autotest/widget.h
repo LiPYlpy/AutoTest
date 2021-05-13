@@ -29,6 +29,9 @@ public:
 
     void RecvExplainInfo(QVariant map2Display,QStringList resultList);
 
+    void RecvBeforeTest(QStringList startTest);
+
+    void RecvStatePerPac(QVariant map2Display);
 
 signals:
 
@@ -41,7 +44,9 @@ signals:
 
     void SendExplainInfo(QVariant map2Display,QStringList resultList);
 
+    void SendBeforeTest(QStringList startTest);
 
+    void SendStatePerPac(QVariant map2Display);
 
 private:
     Ui::Widget *ui;

@@ -508,6 +508,9 @@ void AnalysisPac::DataAnalyse()
     {
         //指令
         QString command = cStringList.at(0).mid(6,4);
+
+        emit Send2RCForm(map2Display);
+
         if(displayMap.value("TM-RCES-44").at(1)==command || displayMap.value("TM-RCES-45").at(1)==command)
         {
             QStringList testList;
@@ -681,6 +684,8 @@ PacController::PacController()
     connect(readPac,&AnalysisPac::DetectisOver,this,&PacController::DetectisOver);
     //未检测到对应指令
     connect(readPac,&AnalysisPac::CommandnotFind,this,&PacController::CommandnotFind);
+
+    connect(readPac,&AnalysisPac::Send2RCForm,this,&PacController::GetStatePerPac);
 
     pacWriteThread->start();
     pacReadThread->start();
@@ -1811,5 +1816,10 @@ void PacController::CommandnotFind(QString command)
 void PacController::GetExplainInfo(QVariant map2Display,QStringList resultList)
 {
     emit SendExplainInfo(map2Display, resultList);
+}
+
+void PacController::GetStatePerPac(QVariant map2Display)
+{
+    emit SendStatePerPac(map2Display);
 }
 

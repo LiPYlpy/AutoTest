@@ -45,6 +45,7 @@ public:
 
     void RecvExplainInfo(QVariant map2Display,QStringList resultList);
 
+    void RecvStatePerPac(QVariant map2Display);
 
 signals:
     //传递串口参数值
@@ -73,6 +74,8 @@ signals:
 
     void SendStandardState(QStringList standardArray);
 
+    void SendBeforeCommand(QStringList startTest);
+
     void SendCommandList(QStringList lineStr);
 
     void CommandOver();
@@ -84,6 +87,8 @@ signals:
 //    void SendExplainInfo(int sysName, QVariantList valueList, QVariantList hexList, QStringList resultList);
 
     void SendExplainInfo(QVariant map2Display,QStringList resultList);
+
+    void SendStatePerPac(QVariant map2Display);
 
 private:
     Ui::SerialForm *ui;

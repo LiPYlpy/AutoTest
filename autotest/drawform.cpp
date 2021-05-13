@@ -290,6 +290,16 @@ void DrawForm::updata_plot(QList<float> chosenValueF, QStringList chosenList)
 
     /* 问题在于第一条线超限，线条太细，显示不清晰 */
 
-    ui->widgetPlot->setChart(chart);
+        ui->widgetPlot->setChart(chart);
+}
+
+void DrawForm::clearCurve()
+{
+    QVector<QPointF> points;
+    line_1->replace(points);
+    line_2->replace(points);
+    line_3->replace(points);
+    line_4->replace(points);
+    line_5->replace(points);
 }
 
